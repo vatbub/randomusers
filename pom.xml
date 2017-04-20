@@ -22,7 +22,7 @@
             <url>http://dl.bintray.com/vatbub/fokprojectsSnapshots</url>
         </repository>
         <repository>
-            <snapshots />
+            <snapshots/>
             <id>snapshots</id>
             <name>libs-snapshot</name>
             <url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
@@ -50,7 +50,7 @@
     </parent>
 
     <name>Random Users</name>
-    <description>API for generating random user data. Like Lorem Ipsum, but for people. </description>
+    <description>API for generating random user data. Like Lorem Ipsum, but for people.</description>
     <inceptionYear>2017</inceptionYear>
     <url>https://github.com/vatbub/${gitRepoName}</url>
 
@@ -76,4 +76,12 @@
         <gitRepoName>randomusers</gitRepoName>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
+    </dependencies>
 </project>
