@@ -30,6 +30,14 @@ public class Random {
         return res.toString();
     }
 
+    public static int range(int from, int to) {
+        if (to < from) {
+            throw new IllegalArgumentException("to must be higher than from (from: " + from + ", to:" + to);
+        }
+        return (int) (Math.round(Math.random() * (to - from)) + to);
+    }
+
+    @SuppressWarnings("UnnecessaryEnumModifier")
     public static enum RandomMode {
         lower, lowerUpperNumbers, upper, numbers
     }

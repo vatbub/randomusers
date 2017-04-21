@@ -14,6 +14,7 @@ import com.google.common.hash.Hashing;
 public class Login {
     private String username;
     private String password;
+    private String salt = Random.random(Random.RandomMode.lowerUpperNumbers, 8);
 
     public String getUsername() {
         return username;
@@ -32,7 +33,7 @@ public class Login {
     }
 
     public String getSalt() {
-        return Random.random(Random.RandomMode.lowerUpperNumbers, 8);
+        return salt;
     }
 
     private HashCode getHashCode(Hasher hasher) {

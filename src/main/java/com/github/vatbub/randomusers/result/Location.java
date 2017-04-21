@@ -10,6 +10,11 @@ public class Location {
     private String state;
     private String postCode;
 
+    public static Location generateRandomDefaultLocation(){
+        // TODO
+        return new Location();
+    }
+
     public String getStreet() {
         return street;
     }
