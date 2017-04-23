@@ -132,14 +132,14 @@ public class RandomUser {
         private List<Gender> genders;
         private List<Nationality> nationalities;
         private Generator.PasswordSpec passwordSpec;
-        private String seed;
+        private long seed;
 
         public RandomUserSpec() {
-            this(null, null, null, null);
+            this(null, null, null, Long.MIN_VALUE);
         }
 
         @SuppressWarnings("SameParameterValue")
-        public RandomUserSpec(List<Gender> genders, List<Nationality> nationalities, Generator.PasswordSpec passwordSpec, String seed) {
+        public RandomUserSpec(List<Gender> genders, List<Nationality> nationalities, Generator.PasswordSpec passwordSpec, long seed) {
             setGenders(genders);
             setNationalities(nationalities);
             setPasswordSpec(passwordSpec);
@@ -170,11 +170,11 @@ public class RandomUser {
             this.passwordSpec = passwordSpec;
         }
 
-        public String getSeed() {
+        public long getSeed() {
             return seed;
         }
 
-        public void setSeed(String seed) {
+        public void setSeed(long seed) {
             this.seed = seed;
         }
     }
