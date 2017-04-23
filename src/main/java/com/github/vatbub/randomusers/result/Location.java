@@ -55,4 +55,9 @@ public class Location {
     public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
+
+    @Override
+    public String toString() {
+        return getStreet() + ", " + getPostCode() + " " + getCity() + ", " + getState();
+    }
 }

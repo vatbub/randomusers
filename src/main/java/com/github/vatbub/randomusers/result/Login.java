@@ -113,4 +113,9 @@ public class Login {
         res.setPassword(password.toString());
         return res;
     }
+
+    @Override
+    public String toString() {
+        return "username: " + getUsername() + ", password: " + getPassword() + ", salt: " + getSalt();
+    }
 }
