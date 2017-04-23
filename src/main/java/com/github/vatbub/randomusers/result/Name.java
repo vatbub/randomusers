@@ -1,5 +1,7 @@
 package com.github.vatbub.randomusers.result;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * The name of a {@link RandomUser}
  */
@@ -35,6 +37,6 @@ public class Name {
     }
 
     public static Name generateDefaultName(){
-        return null;
+        return new Name();
     }
 }

@@ -2,11 +2,6 @@ package com.github.vatbub.randomusers.result;
 
 import com.github.vatbub.randomusers.internal.Random;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * A list of possible nationalities for {@link RandomUser}s
  */
@@ -119,25 +114,26 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            Location res = Location.generateRandomDefaultLocation();
+            res.setPostCode(String.valueOf(Random.range(1000, 9999)));
+            return res;
         }
 
         @Override
         public Name generateName() {
             Name res = Name.generateDefaultName();
-            // 'mademoiselle', 'madame'
-            List<String> titles = Collections.singletonList("mademoiselle, madame, monsieur");
-            res.setTitle(Random.randomItem(titles));
+            String[] titles = {"mademoiselle", "madame", "monsieur"};
+            res.setTitle((String) Random.randomItem(titles));
             return res;
         }
     }
@@ -150,17 +146,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '0' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 7);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return "017" + Random.random(Random.RandomMode.numbers, 1) + '-' + Random.random(Random.RandomMode.numbers, 7);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -173,17 +174,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return Random.random(Random.RandomMode.numbers, 8);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return Random.random(Random.RandomMode.numbers, 8);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -196,17 +202,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '9' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 3);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return '6' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 3);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -219,7 +230,7 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '0' + Random.range(2, 9) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 3);
         }
 
         @Override
@@ -229,7 +240,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -242,17 +258,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '0' + Random.range(1, 5) + '-' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 2);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return "06-" + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 2);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -265,17 +286,58 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            String[] phones = {
+                    "01" + Random.random(Random.RandomMode.numbers, 3) + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "01" + Random.random(Random.RandomMode.numbers, 3) + ' ' + Random.random(Random.RandomMode.numbers, 6),
+                    "011" + Random.random(Random.RandomMode.numbers, 1) + Random.random(Random.RandomMode.numbers, 3) + ' ' + Random.random(Random.RandomMode.numbers, 3) + ' ' + Random.random(Random.RandomMode.numbers, 4),
+                    "01" + Random.random(Random.RandomMode.numbers, 1) + "1 " + Random.random(Random.RandomMode.numbers, 3) + ' ' + Random.random(Random.RandomMode.numbers, 4),
+                    "013873" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "015242" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "015394" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "015395" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "015396" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "016973" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "016974" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "016977" + ' ' + Random.random(Random.RandomMode.numbers, 4),
+                    "016977" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "017683" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "017684" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "017687" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "019467" + ' ' + Random.random(Random.RandomMode.numbers, 5),
+                    "02" + Random.random(Random.RandomMode.numbers, 1) + ' ' + Random.random(Random.RandomMode.numbers, 4) + ' ' + Random.random(Random.RandomMode.numbers, 4)
+            };
+
+            return (String) Random.randomItem(phones);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return "07" + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 3);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            Location res = Location.generateRandomDefaultLocation();
+
+            String code = "ABDEFGHJLNPQRSTUWXYZ";
+
+            String[] postcodes = {
+                    Random.random(Random.RandomMode.upper, 1) + Random.random(Random.RandomMode.numbers, 1) + ' ' + Random.random(Random.RandomMode.numbers, 1) + code.charAt(Random.range(0, 19)) + code.charAt(Random.range(0, 19)),
+                    Random.random(Random.RandomMode.upper, 2) + Random.random(Random.RandomMode.numbers, 1) + ' ' + Random.random(Random.RandomMode.numbers, 1) + code.charAt(Random.range(0, 19)) + code.charAt(Random.range(0, 19)),
+                    Random.random(Random.RandomMode.upper, 1) + Random.random(Random.RandomMode.numbers, 2) + ' ' + Random.random(Random.RandomMode.numbers, 1) + code.charAt(Random.range(0, 19)) + code.charAt(Random.range(0, 19)),
+                    Random.random(Random.RandomMode.upper, 2) + Random.random(Random.RandomMode.numbers, 2) + ' ' + Random.random(Random.RandomMode.numbers, 1) + code.charAt(Random.range(0, 19)) + code.charAt(Random.range(0, 19)),
+                    Random.random(Random.RandomMode.upper, 2) + Random.random(Random.RandomMode.numbers, 1) + Random.random(Random.RandomMode.upper, 1) + ' ' + Random.random(Random.RandomMode.numbers, 1) + code.charAt(Random.range(0, 19)) + code.charAt(Random.range(0, 19)),
+                    Random.random(Random.RandomMode.upper, 1) + Random.random(Random.RandomMode.numbers, 1) + Random.random(Random.RandomMode.upper, 1) + ' ' + Random.random(Random.RandomMode.numbers, 1) + code.charAt(Random.range(0, 19)) + code.charAt(Random.range(0, 19))
+            };
+
+            res.setPostCode((String) Random.randomItem(postcodes));
+
+            return res;
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -288,17 +350,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '0' + Random.range(1, 7) + "1-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return "081-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -311,17 +378,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '0' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 8);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return "09" + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -334,17 +406,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + "-" + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -356,17 +433,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + "-" + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -378,22 +460,26 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
     class American implements Nationality {
-
         @Override
         public String getShortCode() {
             return "US";
@@ -401,17 +487,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -424,17 +515,22 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
         @Override
         public Location generateLocation() {
-            return null;
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 

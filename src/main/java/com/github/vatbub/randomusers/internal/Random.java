@@ -40,13 +40,13 @@ public class Random {
     }
 
     /**
-     * Returns a random item from the list
+     * Returns a random item from the array
      *
-     * @param list The list to return an item from
-     * @return A random item from the list
+     * @param array The array to return an item from
+     * @return A random item from the array
      */
-    public static Object randomItem(List<Object> list) {
-        return list.get(Random.range(0, list.size() - 1));
+    public static Object randomItem(Object[] array) {
+        return array[Random.range(0, array.length - 1)];
     }
 
     @SuppressWarnings("UnnecessaryEnumModifier")
