@@ -1,16 +1,32 @@
 package com.github.vatbub.randomusers;
 
+import com.github.vatbub.randomusers.data.DataSet;
+import com.github.vatbub.randomusers.internal.Random;
 import com.github.vatbub.randomusers.result.*;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Generates {@link RandomUser}s
  */
 public class Generator {
+    static Map<Nationality, DataSet> dataCache = new HashMap<>();
 
-    public static RandomUser generateRandomUser(Gender gender,Nationality nationality, PasswordSpec passwordSpec, String seed) {
+    // TODO Implement list of nationalities
+
+    public static RandomUser generateRandomUser(Nationality nationality, PasswordSpec passwordSpec, String seed) throws FileNotFoundException, URISyntaxException {
+        return generateRandomUser((Gender) Random.randomItem(Gender.values()), nationality, passwordSpec, seed);
+    }
+
+    public static RandomUser generateRandomUser(Gender gender,Nationality nationality, PasswordSpec passwordSpec, String seed) throws FileNotFoundException, URISyntaxException {
+        if (!dataCache.containsKey(nationality)){
+            dataCache.put(nationality, DataSet.load(nationality));
+        }
+
         Name name = null;
         Location location = null;
         String email = null;
