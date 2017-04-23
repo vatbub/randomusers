@@ -1,6 +1,7 @@
 package com.github.vatbub.randomusers.result;
 
 import com.github.vatbub.randomusers.Generator;
+import com.github.vatbub.randomusers.Generator.PasswordSpec;
 
 import java.util.Date;
 import java.util.List;
@@ -128,10 +129,20 @@ public class RandomUser {
         this.nationality = nationality;
     }
 
+    /**
+     * Specs used to control what types of {@link RandomUser} s are generated using the {@link Generator}.<br>
+     * <br>
+     * If any of the fields ({@link Gender}, {@link Nationality}, {@link PasswordSpec} or {@link #setSeed(long) seed}) is not specified using the corresponding setter, a suitable random value will be picked by the {@link Generator}.
+     * If you add more than one entry to the lists for the gender or nationality, the {@link Generator} will pick a random one among the genders/nationalities you specified in the corresponding list.
+     * @see Generator
+     * @see Generator#generateRandomUser(RandomUserSpec)
+     * @see Generator#generateRandomUsers(RandomUserSpec, int)
+     * @see Generator#generateRandomUsersWithMultiThreading(RandomUserSpec, int)
+     */
     public static class RandomUserSpec {
         private List<Gender> genders;
         private List<Nationality> nationalities;
-        private Generator.PasswordSpec passwordSpec;
+        private PasswordSpec passwordSpec;
         private long seed;
 
         public RandomUserSpec() {
@@ -139,7 +150,7 @@ public class RandomUser {
         }
 
         @SuppressWarnings("SameParameterValue")
-        public RandomUserSpec(List<Gender> genders, List<Nationality> nationalities, Generator.PasswordSpec passwordSpec, long seed) {
+        public RandomUserSpec(List<Gender> genders, List<Nationality> nationalities, PasswordSpec passwordSpec, long seed) {
             setGenders(genders);
             setNationalities(nationalities);
             setPasswordSpec(passwordSpec);
@@ -162,11 +173,11 @@ public class RandomUser {
             this.nationalities = nationalities;
         }
 
-        public Generator.PasswordSpec getPasswordSpec() {
+        public PasswordSpec getPasswordSpec() {
             return passwordSpec;
         }
 
-        public void setPasswordSpec(Generator.PasswordSpec passwordSpec) {
+        public void setPasswordSpec(PasswordSpec passwordSpec) {
             this.passwordSpec = passwordSpec;
         }
 

@@ -12,6 +12,12 @@ public class Name {
     private String firstName;
     private String lastName;
 
+    /**
+     * Picks a random name from the according {@link DataSet}
+     * @param gender The {@link Gender} to pick a name for
+     * @param nationality The {@link Nationality} of the person to pick a name for
+     * @return A random name
+     */
     public static Name generateDefaultName(Gender gender, Nationality nationality) {
         DataSet dataSet = DataSet.load(nationality);
         Name res = new Name();

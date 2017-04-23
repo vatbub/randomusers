@@ -1,6 +1,6 @@
 package com.github.vatbub.randomusers.result;
 
-import com.github.vatbub.randomusers.Generator;
+import com.github.vatbub.randomusers.Generator.PasswordSpec;
 import com.github.vatbub.randomusers.data.DataSet;
 import com.github.vatbub.randomusers.internal.Random;
 import com.google.common.base.Charsets;
@@ -34,6 +34,10 @@ public class Login {
         this.password = password;
     }
 
+    /**
+     * A random {@code String} that is 8 characters long and
+     * @return
+     */
     public String getSalt() {
         return salt;
     }
@@ -43,18 +47,41 @@ public class Login {
         return hasher.putString(getPassword() + getSalt(), Charsets.UTF_8).hash();
     }
 
+    /**
+     * Calculates the MD5-Hash of the concatenation of the password and the salt.
+     * @see #getSalt()
+     * @see #getPassword()
+     * @return The MD5-Hash of the concatenation of the password and the salt.
+     */
     public String getMD5() {
         return getHashCode(Hashing.md5().newHasher()).toString();
     }
 
+    /**
+     * Calculates the SHA1-Hash of the concatenation of the password and the salt.
+     * @see #getSalt()
+     * @see #getPassword()
+     * @return The SHA1-Hash of the concatenation of the password and the salt.
+     */
     public String getSHA1() {
         return getHashCode(Hashing.sha1().newHasher()).toString();
     }
 
+    /**
+     * Calculates the SHA256-Hash of the concatenation of the password and the salt.
+     * @see #getSalt()
+     * @see #getPassword()
+     * @return The SHA256-Hash of the concatenation of the password and the salt.
+     */
     public String getSHA256() {
         return getHashCode(Hashing.sha256().newHasher()).toString();
     }
 
+    /**
+     * Generates random login credentials
+     * @return A random {@link Login}
+     * @see #generateLogin(PasswordSpec)
+     */
     public static Login generateLogin(){
         Login res = new Login();
         res.setUsername(generateUsername());
@@ -66,13 +93,19 @@ public class Login {
         return (String) Random.randomItem(DataSet.CommonDataSet.getUser1().toArray()) + Random.randomItem(DataSet.CommonDataSet.getUser2().toArray()) + Random.range(100, 999);
     }
 
-    public static Login generateLogin(Generator.PasswordSpec passwordSpec){
+    /**
+     * Generates random login credentials that follow the specified {@link PasswordSpec PasswordSpecs}
+     * @param passwordSpec The {@link PasswordSpec PasswordSpecs} to use to generate the password
+     * @return A random {@link Login} whose password follows the specified {@link PasswordSpec PasswordSpecs}
+     * @see #generateLogin()
+     */
+    public static Login generateLogin(PasswordSpec passwordSpec){
         Login res = new Login();
         res.setUsername(generateUsername());
 
         int length = Random.range(passwordSpec.getMinLength(), passwordSpec.getMaxLength());
         StringBuilder password = new StringBuilder();
-        char[] array = Generator.PasswordSpec.PasswordCharset.getAvailableChars(passwordSpec.getCharset()).toCharArray();
+        char[] array = PasswordSpec.PasswordCharset.getAvailableChars(passwordSpec.getCharset()).toCharArray();
         while (password.length()<length) {
             password.append(array[Random.range(0, array.length - 1)]);
         }

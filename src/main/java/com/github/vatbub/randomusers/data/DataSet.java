@@ -105,6 +105,9 @@ public class DataSet {
         return street;
     }
 
+    /**
+     * Represents a data set that holds data that is common for all {@link Nationality nationalities}.
+     */
     public static class CommonDataSet {
         private static List<String> passwords;
         private static List<String> title;

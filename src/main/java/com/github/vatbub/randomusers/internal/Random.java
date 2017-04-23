@@ -5,6 +5,13 @@ package com.github.vatbub.randomusers.internal;
  */
 public class Random {
     private static java.util.Random randomNumberGenerator = new java.util.Random();
+
+    /**
+     * Generates a random string
+     * @param mode Defines the charset to be used to generate the string
+     * @param length The length of the desired string
+     * @return A random string
+     */
     public static String random(RandomMode mode, int length) {
         String chars = "";
         StringBuilder res = new StringBuilder();
@@ -31,6 +38,12 @@ public class Random {
         return res.toString();
     }
 
+    /**
+     * Picks a random number from the specified interval
+     * @param from The minimal value of the return value
+     * @param to The maximal value of the return value
+     * @return A random integer that is bigger or equal to {@code from} and less or equal to {@code to}
+     */
     public static int range(int from, int to) {
         if (to < from) {
             throw new IllegalArgumentException("to must be higher than from (from: " + from + ", to:" + to);
@@ -49,10 +62,22 @@ public class Random {
     }
 
     @SuppressWarnings("UnnecessaryEnumModifier")
+    /**
+     * Charset for the {@link #random(RandomMode, int)}-method<br>
+     * <br>
+     * {@code lower}:   Lower case letters from a to z
+     * {@code upper}:   Upper case letters from A to Z
+     * {@code numbers}: All numbers from 0 to 9
+     * {@code lowerUpperNumbers}:   Everything mentioned earlier
+     */
     public static enum RandomMode {
         lower, lowerUpperNumbers, upper, numbers
     }
-    
+
+    /**
+     * Reinitializes the random number generator with the given seed. That means that after each call to this method using the same seed, all methods of this class will return the same values again
+     * @param seed The seed to use
+     */
     public static void setSeed(long seed){
         randomNumberGenerator = new java.util.Random(seed);
     }
