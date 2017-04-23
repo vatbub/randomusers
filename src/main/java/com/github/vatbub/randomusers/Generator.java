@@ -60,9 +60,7 @@ public class Generator {
     }
 
     private static Nationality generateRandomNationality() {
-        Nationality[] array = new Nationality[]{new Nationality.American(), new Nationality.Australian(), new Nationality.Brazilian(), new Nationality.British(), new Nationality.Canadian(), new Nationality.Danish(), new Nationality.Dutch(), new Nationality.Finnish(), new Nationality.French(), new Nationality.German(), new Nationality.Iranian(), new Nationality.Irish(), new Nationality.New_zealand(), new Nationality.Spanish(), new Nationality.Swiss(), new Nationality.Turkish()};
-        System.out.println(array.length);
-        return (Nationality) Random.randomItem(array);
+        return (Nationality) Random.randomItem(new Nationality[]{new Nationality.American(), new Nationality.Australian(), new Nationality.Brazilian(), new Nationality.British(), new Nationality.Canadian(), new Nationality.Danish(), new Nationality.Dutch(), new Nationality.Finnish(), new Nationality.French(), new Nationality.German(), new Nationality.Iranian(), new Nationality.Irish(), new Nationality.New_zealand(), new Nationality.Spanish(), new Nationality.Swiss(), new Nationality.Turkish()});
     }
 
     private static Gender generateRandomGender() {

@@ -1,7 +1,5 @@
 package com.github.vatbub.randomusers.internal;
 
-import java.util.List;
-
 /**
  * Various random functions required in the api. They are meant to be used internally, don't call them directly.
  */
@@ -26,7 +24,7 @@ public class Random {
         }
 
         for (int i = 0; i < length; i++) {
-            res.append(chars.charAt((int) Math.round(Math.random() * chars.length())));
+            res.append(chars.charAt((int) Math.round(Math.random() * (chars.length() - 1))));
         }
 
         return res.toString();
@@ -36,7 +34,7 @@ public class Random {
         if (to < from) {
             throw new IllegalArgumentException("to must be higher than from (from: " + from + ", to:" + to);
         }
-        return (int) (Math.round(Math.random() * (to - from)) + to);
+        return (int) (Math.round(Math.random() * (to - from)) + from);
     }
 
     /**

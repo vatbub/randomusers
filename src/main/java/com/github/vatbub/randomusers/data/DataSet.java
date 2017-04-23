@@ -40,39 +40,39 @@ public class DataSet {
     public static DataSet loadWithoutCache(Nationality nationality) {
         DataSet res = new DataSet();
 
-        String resourcePackage = nationality.getShortCode() + ".lists";
+        String resourcePackage = nationality.getShortCode() + "/lists";
 
-        Scanner scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + ".cities.txt"));
+        Scanner scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/cities.txt"));
         res.cities = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.cities.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + ".female_first.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/female_first.txt"));
         res.femaleFirst = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.femaleFirst.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + ".male_first.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/male_first.txt"));
         res.maleFirst = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.maleFirst.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + ".last.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/last.txt"));
         res.last = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.last.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + ".states.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/states.txt"));
         res.states = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.states.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + ".street.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/street.txt"));
         res.street = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.street.add(scanner.nextLine());
@@ -112,7 +112,7 @@ public class DataSet {
         private static List<String> user2;
 
         private static void loadPasswords() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common.lists.passwords.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/passwords.txt"));
             passwords = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 passwords.add(scanner.nextLine());
@@ -120,7 +120,7 @@ public class DataSet {
         }
 
         private static void loadTitle() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common.lists.title.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/title.txt"));
             title = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 title.add(scanner.nextLine());
@@ -128,7 +128,7 @@ public class DataSet {
         }
 
         private static void loadUser1() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common.lists.user1.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/user1.txt"));
             user1 = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 user1.add(scanner.nextLine());
@@ -136,7 +136,7 @@ public class DataSet {
         }
 
         private static void loadUser2() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common.lists.user2.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/user2.txt"));
             user2 = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 user2.add(scanner.nextLine());
