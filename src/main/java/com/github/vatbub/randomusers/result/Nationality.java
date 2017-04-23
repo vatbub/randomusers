@@ -2,6 +2,11 @@ package com.github.vatbub.randomusers.result;
 
 import com.github.vatbub.randomusers.internal.Random;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * A list of possible nationalities for {@link RandomUser}s
  */
@@ -15,6 +20,8 @@ public interface Nationality {
     String generateCellPhoneNumber();
 
     Location generateLocation();
+
+    Name generateName();
 
     class Australian implements Nationality {
 
@@ -37,8 +44,13 @@ public interface Nationality {
         public Location generateLocation() {
             Location res = Location.generateRandomDefaultLocation();
             res.setPostCode(String.valueOf(Random.range(200, 9999)));
-            res.getStreet().replace("(\\d+)", Integer.toString(Random.range(1, 9999)));
+            res.setStreet(res.getStreet().replace("(\\d+)", Integer.toString(Random.range(1, 9999))));
             return res;
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
         }
     }
 
@@ -63,9 +75,14 @@ public interface Nationality {
         public Location generateLocation() {
             return Location.generateRandomDefaultLocation();
         }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
+        }
     }
 
-    class Canadian implements Nationality{
+    class Canadian implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -74,6 +91,34 @@ public interface Nationality {
 
         @Override
         public String generatePhoneNumber() {
+            return Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
+        }
+
+        @Override
+        public String generateCellPhoneNumber() {
+            return Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
+        }
+
+        @Override
+        public Location generateLocation() {
+            return Location.generateRandomDefaultLocation();
+        }
+
+        @Override
+        public Name generateName() {
+            return Name.generateDefaultName();
+        }
+    }
+
+    class Swiss implements Nationality {
+
+        @Override
+        public String getShortCode() {
+            return "CH";
+        }
+
+        @Override
+        public String generatePhoneNumber() {
             return null;
         }
 
@@ -86,13 +131,21 @@ public interface Nationality {
         public Location generateLocation() {
             return null;
         }
-    }
-
-    class Swiss implements Nationality{
 
         @Override
+        public Name generateName() {
+            Name res = Name.generateDefaultName();
+            // 'mademoiselle', 'madame'
+            List<String> titles = Collections.singletonList("mademoiselle, madame, monsieur");
+            res.setTitle(Random.randomItem(titles));
+            return res;
+        }
+    }
+
+    class German implements Nationality {
+        @Override
         public String getShortCode() {
-            return null;
+            return "DE";
         }
 
         @Override
@@ -111,12 +164,11 @@ public interface Nationality {
         }
     }
 
-    class German implements Nationality{
-
+    class Danish implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "DK";
         }
 
         @Override
@@ -135,11 +187,11 @@ public interface Nationality {
         }
     }
 
-    class Danish implements Nationality{
+    class Spanish implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "ES";
         }
 
         @Override
@@ -158,11 +210,11 @@ public interface Nationality {
         }
     }
 
-    class Spanish implements Nationality{
+    class Finnish implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "FI";
         }
 
         @Override
@@ -181,11 +233,11 @@ public interface Nationality {
         }
     }
 
-    class Finnish implements Nationality{
+    class French implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "FR";
         }
 
         @Override
@@ -204,11 +256,11 @@ public interface Nationality {
         }
     }
 
-    class French implements Nationality{
+    class British implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "GB";
         }
 
         @Override
@@ -227,11 +279,11 @@ public interface Nationality {
         }
     }
 
-    class British implements Nationality{
+    class Irish implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "IE";
         }
 
         @Override
@@ -250,11 +302,11 @@ public interface Nationality {
         }
     }
 
-    class Irish implements Nationality{
+    class Iranian implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "IR";
         }
 
         @Override
@@ -273,11 +325,11 @@ public interface Nationality {
         }
     }
 
-    class Iranian implements Nationality{
+    class Dutch implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "NL";
         }
 
         @Override
@@ -296,11 +348,10 @@ public interface Nationality {
         }
     }
 
-    class Dutch implements Nationality{
-
+    class New_zealand implements Nationality {
         @Override
         public String getShortCode() {
-            return null;
+            return "NZ";
         }
 
         @Override
@@ -319,11 +370,10 @@ public interface Nationality {
         }
     }
 
-    class New_zealand implements Nationality{
-
+    class Turkish implements Nationality {
         @Override
         public String getShortCode() {
-            return null;
+            return "TR";
         }
 
         @Override
@@ -342,11 +392,11 @@ public interface Nationality {
         }
     }
 
-    class Turkish implements Nationality{
+    class American implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "US";
         }
 
         @Override
@@ -365,11 +415,11 @@ public interface Nationality {
         }
     }
 
-    class American implements Nationality{
+    class Lego implements Nationality {
 
         @Override
         public String getShortCode() {
-            return null;
+            return "LEGO";
         }
 
         @Override
@@ -388,86 +438,4 @@ public interface Nationality {
         }
     }
 
-    class Lego implements Nationality{
-
-        @Override
-        public String getShortCode() {
-            return null;
-        }
-
-        @Override
-        public String generatePhoneNumber() {
-            return null;
-        }
-
-        @Override
-        public String generateCellPhoneNumber() {
-            return null;
-        }
-
-        @Override
-        public Location generateLocation() {
-            return null;
-        }
-    }
-
-    /*public static String getShortCode(Nationality nationality){
-        String res = null;
-        // AU, BR, CA, CH, DE, DK, ES, FI, FR, GB, IE, IR, NL, NZ, TR, US
-        switch (nationality){
-            case australian:
-                res = "AU";
-                break;
-            case brazilian:
-                res = "BR";
-                break;
-            case canadian:
-                res = "CA";
-                break;
-            case swiss:
-                res = "CH";
-                break;
-            case german:
-                res = "DE";
-                break;
-            case danish:
-                res = "DK";
-                break;
-            case spanish:
-                res = "ES";
-                break;
-            case finnish:
-                res = "FI";
-                break;
-            case french:
-                res = "FR";
-                break;
-            case british:
-                res = "GB";
-                break;
-            case irish:
-                res = "IE";
-                break;
-            case iranian:
-                res = "IR";
-                break;
-            case dutch:
-                res = "NL";
-                break;
-            case new_zealand:
-                res = "NZ";
-                break;
-            case turkish:
-                res = "TR";
-                break;
-            case american:
-                res = "US";
-                break;
-            case lego:
-                res="LEGO";
-                break;
-        }
-
-        return res;
-    }*/
 }

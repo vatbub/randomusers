@@ -33,4 +33,8 @@ public class Name {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public static Name generateDefaultName(){
+        return null;
+    }
 }

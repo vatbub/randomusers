@@ -1,5 +1,7 @@
 package com.github.vatbub.randomusers.internal;
 
+import java.util.List;
+
 /**
  * Various random functions required in the api. They are meant to be used internally, don't call them directly.
  */
@@ -35,6 +37,16 @@ public class Random {
             throw new IllegalArgumentException("to must be higher than from (from: " + from + ", to:" + to);
         }
         return (int) (Math.round(Math.random() * (to - from)) + to);
+    }
+
+    /**
+     * Returns a random item from the list
+     *
+     * @param list The list to return an item from
+     * @return A random item from the list
+     */
+    public static Object randomItem(List<Object> list) {
+        return list.get(Random.range(0, list.size() - 1));
     }
 
     @SuppressWarnings("UnnecessaryEnumModifier")
