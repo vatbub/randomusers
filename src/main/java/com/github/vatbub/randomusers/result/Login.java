@@ -1,5 +1,7 @@
 package com.github.vatbub.randomusers.result;
 
+import com.github.vatbub.randomusers.Generator;
+import com.github.vatbub.randomusers.data.DataSet;
 import com.github.vatbub.randomusers.internal.Random;
 import com.google.common.base.Charsets;
 import com.google.common.hash.HashCode;
@@ -51,5 +53,31 @@ public class Login {
 
     public String getSHA256() {
         return getHashCode(Hashing.sha256().newHasher()).toString();
+    }
+
+    public static Login generateLogin(){
+        Login res = new Login();
+        res.setUsername(generateUsername());
+        res.setPassword((String) Random.randomItem(DataSet.CommonDataSet.getPasswords().toArray()));
+        return res;
+    }
+
+    private static String generateUsername(){
+        return (String) Random.randomItem(DataSet.CommonDataSet.getUser1().toArray()) + Random.randomItem(DataSet.CommonDataSet.getUser2().toArray()) + Random.range(100, 999);
+    }
+
+    public static Login generateLogin(Generator.PasswordSpec passwordSpec){
+        Login res = new Login();
+        res.setUsername(generateUsername());
+
+        int length = Random.range(passwordSpec.getMinLength(), passwordSpec.getMaxLength());
+        StringBuilder password = new StringBuilder();
+        char[] array = Generator.PasswordSpec.PasswordCharset.getAvailableChars(passwordSpec.getCharset()).toCharArray();
+        while (password.length()<length) {
+            password.append(array[Random.range(0, array.length - 1)]);
+        }
+
+        res.setPassword(password.toString());
+        return res;
     }
 }

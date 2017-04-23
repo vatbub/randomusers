@@ -1,43 +1,72 @@
 package com.github.vatbub.randomusers;
 
-import com.github.vatbub.randomusers.data.DataSet;
 import com.github.vatbub.randomusers.internal.Random;
 import com.github.vatbub.randomusers.result.*;
 
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Generates {@link RandomUser}s
  */
 public class Generator {
-    static Map<Nationality, DataSet> dataCache = new HashMap<>();
-
     // TODO Implement list of nationalities
 
-    public static RandomUser generateRandomUser(Nationality nationality, PasswordSpec passwordSpec, String seed) throws FileNotFoundException, URISyntaxException {
-        return generateRandomUser((Gender) Random.randomItem(Gender.values()), nationality, passwordSpec, seed);
-    }
+    public static RandomUser generateRandomUser(RandomUser.RandomUserSpec spec) {
+        Nationality nationality;
+        Gender gender;
 
-    public static RandomUser generateRandomUser(Gender gender,Nationality nationality, PasswordSpec passwordSpec, String seed) throws FileNotFoundException, URISyntaxException {
-        if (!dataCache.containsKey(nationality)){
-            dataCache.put(nationality, DataSet.load(nationality));
+        if (spec.getNationalities() == null) {
+            nationality = generateRandomNationality();
+        } else {
+            nationality = (Nationality) Random.randomItem(spec.getNationalities().toArray());
         }
 
-        Name name = null;
-        Location location = null;
-        String email = null;
-        Login login = null;
-        Date dateOfBirth = null;
-        Date registrationDate = null;
-        String phone = null;
-        String cell = null;
+        if (spec.getGenders() == null) {
+            gender = generateRandomGender();
+        } else {
+            gender = (Gender) Random.randomItem(spec.getGenders().toArray());
+        }
+
+        Name name = nationality.generateName(gender);
+        Location location = nationality.generateLocation();
+        String email = name.getFirstName() + "." + name.getLastName().replaceAll(" ", "") + "@example.com";
+
+        Login login;
+        if (spec.getPasswordSpec() == null) {
+            login = Login.generateLogin();
+        } else {
+            login = Login.generateLogin(spec.getPasswordSpec());
+        }
+
+        Calendar birthDateCalendar = Calendar.getInstance();
+        Calendar now = Calendar.getInstance();
+        birthDateCalendar.set(Calendar.YEAR, Random.range(now.get(Calendar.YEAR) - 100, now.get(Calendar.YEAR)));
+        birthDateCalendar.set(Calendar.MONTH, Random.range(0, 11));
+        birthDateCalendar.set(Calendar.DATE, Random.range(1, birthDateCalendar.getActualMaximum(Calendar.DAY_OF_MONTH)));
+        Date dateOfBirth = birthDateCalendar.getTime();
+
+        Calendar registrationDateCalendar = Calendar.getInstance();
+        registrationDateCalendar.set(Calendar.YEAR, Random.range(now.get(Calendar.YEAR) - 100, now.get(Calendar.YEAR)));
+        registrationDateCalendar.set(Calendar.MONTH, Random.range(0, 11));
+        registrationDateCalendar.set(Calendar.DATE, Random.range(1, registrationDateCalendar.getActualMaximum(Calendar.DAY_OF_MONTH)));
+        Date registrationDate = registrationDateCalendar.getTime();
+
+        String phone = nationality.generatePhoneNumber();
+        String cell = nationality.generateCellPhoneNumber();
         AvatarPicture picture = null;
 
         return new RandomUser(gender, name, location, email, login, dateOfBirth, registrationDate, phone, cell, picture, nationality);
+    }
+
+    private static Nationality generateRandomNationality() {
+        Nationality[] array = new Nationality[]{new Nationality.American(), new Nationality.Australian(), new Nationality.Brazilian(), new Nationality.British(), new Nationality.Canadian(), new Nationality.Danish(), new Nationality.Dutch(), new Nationality.Finnish(), new Nationality.French(), new Nationality.German(), new Nationality.Iranian(), new Nationality.Irish(), new Nationality.New_zealand(), new Nationality.Spanish(), new Nationality.Swiss(), new Nationality.Turkish()};
+        System.out.println(array.length);
+        return (Nationality) Random.randomItem(array);
+    }
+
+    private static Gender generateRandomGender() {
+        return (Gender) Random.randomItem(Gender.values());
     }
 
     @SuppressWarnings("unused")

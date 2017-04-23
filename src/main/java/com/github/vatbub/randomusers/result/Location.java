@@ -1,5 +1,8 @@
 package com.github.vatbub.randomusers.result;
 
+import com.github.vatbub.randomusers.data.DataSet;
+import com.github.vatbub.randomusers.internal.Random;
+
 /**
  * The postal address of a {@link RandomUser}
  */
@@ -10,9 +13,15 @@ public class Location {
     private String state;
     private String postCode;
 
-    public static Location generateRandomDefaultLocation(){
-        // TODO
-        return new Location();
+    public static Location generateRandomDefaultLocation(Nationality nationality){
+        Location res =  new Location();
+
+        res.setStreet(Random.range(1000, 9999) + " " + Random.randomItem(DataSet.load(nationality).getStreet().toArray()));
+        res.setCity((String) Random.randomItem(DataSet.load(nationality).getCities().toArray()));
+        res.setState((String) Random.randomItem(DataSet.load(nationality).getStates().toArray()));
+        res.setPostCode(String.valueOf(Random.range(10000, 99999)));
+
+        return res;
     }
 
     public String getStreet() {

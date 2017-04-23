@@ -1,6 +1,9 @@
 package com.github.vatbub.randomusers.result;
 
-import org.jetbrains.annotations.NotNull;
+import com.github.vatbub.randomusers.data.DataSet;
+import com.github.vatbub.randomusers.internal.Random;
+
+import javax.xml.crypto.Data;
 
 /**
  * The name of a {@link RandomUser}
@@ -11,6 +14,21 @@ public class Name {
     private String firstName;
     private String lastName;
 
+    public static Name generateDefaultName(Gender gender, Nationality nationality) {
+        DataSet dataSet = DataSet.load(nationality);
+        Name res = new Name();
+
+        if (gender == Gender.male) {
+            res.setTitle("mr");
+            res.setFirstName((String) Random.randomItem(dataSet.getMaleFirst().toArray()));
+        } else {
+            res.setTitle((String) Random.randomItem(DataSet.CommonDataSet.getTitle().toArray()));
+            res.setFirstName((String) Random.randomItem(dataSet.getFemaleFirst().toArray()));
+        }
+        res.setLastName((String) Random.randomItem(dataSet.getLast().toArray()));
+
+        return res;
+    }
 
     public String getTitle() {
         return title;
@@ -36,7 +54,8 @@ public class Name {
         this.lastName = lastName;
     }
 
-    public static Name generateDefaultName(){
-        return new Name();
+    @Override
+    public String toString() {
+        return getTitle() + ". " + getFirstName() + " " + getLastName();
     }
 }

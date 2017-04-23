@@ -16,7 +16,7 @@ public interface Nationality {
 
     Location generateLocation();
 
-    Name generateName();
+    Name generateName(Gender gender);
 
     class Australian implements Nationality {
 
@@ -37,15 +37,15 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            Location res = Location.generateRandomDefaultLocation();
+            Location res = Location.generateRandomDefaultLocation(this);
             res.setPostCode(String.valueOf(Random.range(200, 9999)));
             res.setStreet(res.getStreet().replace("(\\d+)", Integer.toString(Random.range(1, 9999))));
             return res;
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -68,12 +68,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -96,12 +96,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -124,14 +124,14 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            Location res = Location.generateRandomDefaultLocation();
+            Location res = Location.generateRandomDefaultLocation(this);
             res.setPostCode(String.valueOf(Random.range(1000, 9999)));
             return res;
         }
 
         @Override
-        public Name generateName() {
-            Name res = Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            Name res = Name.generateDefaultName(gender, this);
             String[] titles = {"mademoiselle", "madame", "monsieur"};
             res.setTitle((String) Random.randomItem(titles));
             return res;
@@ -156,12 +156,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -184,12 +184,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -212,12 +212,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -240,12 +240,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -268,12 +268,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -317,7 +317,7 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            Location res = Location.generateRandomDefaultLocation();
+            Location res = Location.generateRandomDefaultLocation(this);
 
             String code = "ABDEFGHJLNPQRSTUWXYZ";
 
@@ -336,8 +336,8 @@ public interface Nationality {
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -360,12 +360,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -388,12 +388,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -416,12 +416,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -443,12 +443,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -470,12 +470,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -497,12 +497,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
@@ -525,12 +525,12 @@ public interface Nationality {
 
         @Override
         public Location generateLocation() {
-            return Location.generateRandomDefaultLocation();
+            return Location.generateRandomDefaultLocation(this);
         }
 
         @Override
-        public Name generateName() {
-            return Name.generateDefaultName();
+        public Name generateName(Gender gender) {
+            return Name.generateDefaultName(gender, this);
         }
     }
 
