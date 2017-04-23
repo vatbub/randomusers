@@ -8,7 +8,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 @SuppressWarnings("unused")
 public class AvatarPicture {
-    // TODO: IMplement the image generation
+    // TODO: Implement the image generation
+    @SuppressWarnings("FieldCanBeLocal")
     private int imageID;
 
     public AvatarPicture(int imageID){

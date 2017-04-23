@@ -8,7 +8,7 @@ import java.util.*;
  * Represents all lists for a particular nationality
  */
 public class DataSet {
-    private static Map<Nationality, DataSet> dataCache = new HashMap<>();
+    private static final Map<Nationality, DataSet> dataCache = new HashMap<>();
     private List<String> cities;
     private List<String> femaleFirst;
     private List<String> maleFirst;

@@ -506,28 +506,34 @@ public interface Nationality {
         }
     }
 
+    @SuppressWarnings("unused")
     class Lego implements Nationality {
 
+        @SuppressWarnings("unused")
         @Override
         public String getShortCode() {
             return "LEGO";
         }
 
+        @SuppressWarnings("unused")
         @Override
         public String generatePhoneNumber() {
             return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
+        @SuppressWarnings("unused")
         @Override
         public String generateCellPhoneNumber() {
             return '(' + Random.random(Random.RandomMode.numbers, 3) + ")-" + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 4);
         }
 
+        @SuppressWarnings("unused")
         @Override
         public Location generateLocation() {
             return Location.generateRandomDefaultLocation(this);
         }
 
+        @SuppressWarnings("unused")
         @Override
         public Name generateName(Gender gender) {
             return Name.generateDefaultName(gender, this);

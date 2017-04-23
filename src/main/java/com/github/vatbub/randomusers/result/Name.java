@@ -3,8 +3,6 @@ package com.github.vatbub.randomusers.result;
 import com.github.vatbub.randomusers.data.DataSet;
 import com.github.vatbub.randomusers.internal.Random;
 
-import javax.xml.crypto.Data;
-
 /**
  * The name of a {@link RandomUser}
  */

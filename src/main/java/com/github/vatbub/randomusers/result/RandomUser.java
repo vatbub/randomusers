@@ -138,6 +138,7 @@ public class RandomUser {
             this(null, null, null, null);
         }
 
+        @SuppressWarnings("SameParameterValue")
         public RandomUserSpec(List<Gender> genders, List<Nationality> nationalities, Generator.PasswordSpec passwordSpec, String seed) {
             setGenders(genders);
             setNationalities(nationalities);
