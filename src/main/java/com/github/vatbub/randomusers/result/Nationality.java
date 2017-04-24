@@ -363,7 +363,7 @@ public interface Nationality {
         }
     }
 
-    class Irish extends InternalNationality implements Nationality{
+    class Irish extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {

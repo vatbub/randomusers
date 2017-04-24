@@ -28,9 +28,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Generates {@link RandomUser}s
@@ -187,7 +184,7 @@ public class Generator {
 
             public static String getAvailableChars(List<PasswordCharset> charsets) {
                 StringBuilder res = new StringBuilder();
-                for (PasswordCharset charset:charsets){
+                for (PasswordCharset charset : charsets) {
                     res.append(getAvailableChars(charset));
                 }
                 return res.toString();
