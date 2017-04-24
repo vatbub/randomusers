@@ -13,8 +13,8 @@ public class Location {
     private String state;
     private String postCode;
 
-    public static Location generateRandomDefaultLocation(Nationality nationality){
-        Location res =  new Location();
+    public static Location generateRandomDefaultLocation(Nationality nationality) {
+        Location res = new Location();
 
         res.setStreet(Random.range(1000, 9999) + " " + Random.randomItem(DataSet.load(nationality).getStreet().toArray()));
         res.setCity((String) Random.randomItem(DataSet.load(nationality).getCities().toArray()));
@@ -22,6 +22,19 @@ public class Location {
         res.setPostCode(String.valueOf(Random.range(10000, 99999)));
 
         return res;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Location)) {
+            return false;
+        } else {
+            Location cast = (Location) obj;
+            return cast.getStreet().equals(getStreet()) &&
+                    cast.getCity().equals(getCity()) &&
+                    cast.getState().equals(getState()) &&
+                    cast.getPostCode().equals(getPostCode());
+        }
     }
 
     public String getStreet() {

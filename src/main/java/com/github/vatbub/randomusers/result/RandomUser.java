@@ -3,6 +3,7 @@ package com.github.vatbub.randomusers.result;
 import com.github.vatbub.randomusers.Generator;
 import com.github.vatbub.randomusers.Generator.PasswordSpec;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,43 @@ public class RandomUser {
         setCell(cell);
         setPicture(picture);
         setNationality(nationality);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof RandomUser)) {
+            return false;
+        } else {
+            RandomUser cast = (RandomUser) obj;
+            boolean tempRes = cast.getGender().equals(getGender()) &&
+                    cast.getName().equals(getName()) &&
+                    cast.getLocation().equals(getLocation()) &&
+                    cast.getEmail().equals(getEmail()) &&
+                    cast.getLogin().equals(getLogin()) &&
+                    cast.getPhone().equals(getPhone()) &&
+                    cast.getCell().equals(getCell()) &&
+                    // TODO cast.getPicture().equals(getPicture()) &&
+                    cast.getNationality().equals(getNationality());
+
+            Calendar birthdayCalendar1 = Calendar.getInstance();
+            birthdayCalendar1.setTime(getDateOfBirth());
+            Calendar registrationCalendar1 = Calendar.getInstance();
+            registrationCalendar1.setTime(getRegistrationDate());
+
+            Calendar birthdayCalendar2 = Calendar.getInstance();
+            birthdayCalendar2.setTime(cast.getDateOfBirth());
+            Calendar registrationCalendar2 = Calendar.getInstance();
+            registrationCalendar2.setTime(cast.getRegistrationDate());
+
+            boolean dateRes = birthdayCalendar1.get(Calendar.YEAR) == birthdayCalendar2.get(Calendar.YEAR) &&
+                    birthdayCalendar1.get(Calendar.MONTH) == birthdayCalendar2.get(Calendar.MONTH) &&
+                    birthdayCalendar1.get(Calendar.DATE) == birthdayCalendar2.get(Calendar.DATE) &&
+                    registrationCalendar1.get(Calendar.YEAR) == registrationCalendar2.get(Calendar.YEAR) &&
+                    registrationCalendar1.get(Calendar.MONTH) == registrationCalendar2.get(Calendar.MONTH) &&
+                    registrationCalendar1.get(Calendar.DATE) == registrationCalendar2.get(Calendar.DATE);
+
+            return tempRes && dateRes;
+        }
     }
 
     @Override
@@ -134,10 +172,10 @@ public class RandomUser {
      * <br>
      * If any of the fields ({@link Gender}, {@link Nationality}, {@link PasswordSpec} or {@link #setSeed(long) seed}) is not specified using the corresponding setter, a suitable random value will be picked by the {@link Generator}.
      * If you add more than one entry to the lists for the gender or nationality, the {@link Generator} will pick a random one among the genders/nationalities you specified in the corresponding list.
+     *
      * @see Generator
      * @see Generator#generateRandomUser(RandomUserSpec)
      * @see Generator#generateRandomUsers(RandomUserSpec, int)
-     * @see Generator#generateRandomUsersWithMultiThreading(RandomUserSpec, int)
      */
     public static class RandomUserSpec {
         private List<Gender> genders;

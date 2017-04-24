@@ -12,19 +12,24 @@ public class AvatarPicture {
     @SuppressWarnings("FieldCanBeLocal")
     private int imageID;
 
-    public AvatarPicture(int imageID){
+    public AvatarPicture(int imageID) {
         this.imageID = imageID;
     }
 
-    public Image getLargePicture(){
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof AvatarPicture && ((AvatarPicture) obj).imageID == this.imageID;
+    }
+
+    public Image getLargePicture() {
         throw new NotImplementedException();
     }
 
-    public Image getMediumPicture(){
+    public Image getMediumPicture() {
         throw new NotImplementedException();
     }
 
-    public Image getThumbnailPicture(){
+    public Image getThumbnailPicture() {
         throw new NotImplementedException();
     }
 }

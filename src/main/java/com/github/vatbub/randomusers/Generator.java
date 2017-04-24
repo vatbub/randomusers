@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Generates {@link RandomUser}s
@@ -16,11 +17,11 @@ import java.util.concurrent.Executors;
 public class Generator {
     /**
      * Generates multiple {@link RandomUser}s in a row.
-     * @param spec The specifications for the users to generate
+     *
+     * @param spec                      The specifications for the users to generate
      * @param numberOfResultsToGenerate The number of users to generate
      * @return A list that contains the specified number of {@link RandomUser}s
      * @see #generateRandomUser(RandomUser.RandomUserSpec)
-     * @see #generateRandomUsersWithMultiThreading(RandomUser.RandomUserSpec, int)
      */
     public static List<RandomUser> generateRandomUsers(RandomUser.RandomUserSpec spec, int numberOfResultsToGenerate) {
         List<RandomUser> res = new ArrayList<>(numberOfResultsToGenerate);
@@ -32,29 +33,11 @@ public class Generator {
     }
 
     /**
-     * Same as {@link #generateRandomUsers(RandomUser.RandomUserSpec, int)} but uses multiple threads to generate the users.
-     * @param spec The specifications for the users to generate
-     * @param numberOfResultsToGenerate The number of users to generate
-     * @return A list that contains the specified number of {@link RandomUser}s
-     * @see #generateRandomUsers(RandomUser.RandomUserSpec, int)
-     * @see #generateRandomUser(RandomUser.RandomUserSpec)
-     */
-    public static List<RandomUser> generateRandomUsersWithMultiThreading(RandomUser.RandomUserSpec spec, int numberOfResultsToGenerate) {
-        List<RandomUser> res = new ArrayList<>(numberOfResultsToGenerate);
-        ExecutorService e = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        for (int i = 0; i < numberOfResultsToGenerate; i++) {
-            e.submit(() -> res.add(generateRandomUser(spec)));
-        }
-
-        return res;
-    }
-
-    /**
      * Generates one {@link RandomUser} with the specified specifications.
+     *
      * @param spec The specifications for the user to generate
      * @return A random user
      * @see #generateRandomUsers(RandomUser.RandomUserSpec, int)
-     * @see #generateRandomUsersWithMultiThreading(RandomUser.RandomUserSpec, int)
      */
     public static RandomUser generateRandomUser(RandomUser.RandomUserSpec spec) {
         Nationality nationality;
@@ -108,6 +91,7 @@ public class Generator {
 
     /**
      * Picks a random nationality from the {@link Nationality}-class
+     *
      * @return A random nationality from the {@link Nationality}-class
      */
     private static Nationality generateRandomNationality() {
@@ -116,6 +100,7 @@ public class Generator {
 
     /**
      * Picks a random {@link Gender}
+     *
      * @return A random {@link Gender}
      */
     private static Gender generateRandomGender() {
@@ -124,10 +109,11 @@ public class Generator {
 
     /**
      * Specifies how a {@link Login}-password shall be generated
+     *
      * @see Login#generateLogin(PasswordSpec)
      */
     public static class PasswordSpec {
-        private PasswordCharset charset;
+        private List<PasswordCharset> charsets;
         private int minLength;
         private int maxLength;
 
@@ -167,16 +153,24 @@ public class Generator {
             setMaxLength(exactLength);
         }
 
-        public PasswordCharset getCharset() {
-            return charset;
+        public List<PasswordCharset> getCharsets() {
+            return charsets;
         }
 
-        public void setCharset(PasswordCharset charset) {
-            this.charset = charset;
+        public void setCharsets(List<PasswordCharset> charsets) {
+            this.charsets = charsets;
         }
 
         public enum PasswordCharset {
             special, upper, lower, number;
+
+            public static String getAvailableChars(List<PasswordCharset> charsets) {
+                StringBuilder res = new StringBuilder();
+                for (PasswordCharset charset:charsets){
+                    res.append(getAvailableChars(charset));
+                }
+                return res.toString();
+            }
 
             public static String getAvailableChars(PasswordCharset charset) {
                 String res = "";

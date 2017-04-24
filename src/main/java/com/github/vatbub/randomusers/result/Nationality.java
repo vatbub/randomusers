@@ -1,5 +1,6 @@
 package com.github.vatbub.randomusers.result;
 
+import com.github.vatbub.randomusers.internal.InternalNationality;
 import com.github.vatbub.randomusers.internal.Random;
 
 /**
@@ -18,7 +19,7 @@ public interface Nationality {
 
     Name generateName(Gender gender);
 
-    class Australian implements Nationality {
+    class Australian extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -49,7 +50,7 @@ public interface Nationality {
         }
     }
 
-    class Brazilian implements Nationality {
+    class Brazilian extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -77,7 +78,7 @@ public interface Nationality {
         }
     }
 
-    class Canadian implements Nationality {
+    class Canadian extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -105,7 +106,7 @@ public interface Nationality {
         }
     }
 
-    class Swiss implements Nationality {
+    class Swiss extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -138,7 +139,7 @@ public interface Nationality {
         }
     }
 
-    class German implements Nationality {
+    class German extends InternalNationality implements Nationality {
         @Override
         public String getShortCode() {
             return "DE";
@@ -165,7 +166,7 @@ public interface Nationality {
         }
     }
 
-    class Danish implements Nationality {
+    class Danish extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -193,7 +194,7 @@ public interface Nationality {
         }
     }
 
-    class Spanish implements Nationality {
+    class Spanish extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -221,7 +222,7 @@ public interface Nationality {
         }
     }
 
-    class Finnish implements Nationality {
+    class Finnish extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -235,7 +236,7 @@ public interface Nationality {
 
         @Override
         public String generateCellPhoneNumber() {
-            return null;
+            return "04" + Random.range(0, 9) + '-' + Random.random(Random.RandomMode.numbers, 3) + '-' + Random.random(Random.RandomMode.numbers, 2) + '-' + Random.random(Random.RandomMode.numbers, 2);
         }
 
         @Override
@@ -249,7 +250,7 @@ public interface Nationality {
         }
     }
 
-    class French implements Nationality {
+    class French extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -277,7 +278,7 @@ public interface Nationality {
         }
     }
 
-    class British implements Nationality {
+    class British extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -341,7 +342,7 @@ public interface Nationality {
         }
     }
 
-    class Irish implements Nationality {
+    class Irish extends InternalNationality implements Nationality{
 
         @Override
         public String getShortCode() {
@@ -369,7 +370,7 @@ public interface Nationality {
         }
     }
 
-    class Iranian implements Nationality {
+    class Iranian extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -397,7 +398,7 @@ public interface Nationality {
         }
     }
 
-    class Dutch implements Nationality {
+    class Dutch extends InternalNationality implements Nationality {
 
         @Override
         public String getShortCode() {
@@ -425,7 +426,7 @@ public interface Nationality {
         }
     }
 
-    class New_zealand implements Nationality {
+    class New_zealand extends InternalNationality implements Nationality {
         @Override
         public String getShortCode() {
             return "NZ";
@@ -452,7 +453,7 @@ public interface Nationality {
         }
     }
 
-    class Turkish implements Nationality {
+    class Turkish extends InternalNationality implements Nationality {
         @Override
         public String getShortCode() {
             return "TR";
@@ -479,7 +480,7 @@ public interface Nationality {
         }
     }
 
-    class American implements Nationality {
+    class American extends InternalNationality implements Nationality {
         @Override
         public String getShortCode() {
             return "US";
@@ -507,7 +508,7 @@ public interface Nationality {
     }
 
     @SuppressWarnings("unused")
-    class Lego implements Nationality {
+    class Lego extends InternalNationality implements Nationality {
 
         @SuppressWarnings("unused")
         @Override

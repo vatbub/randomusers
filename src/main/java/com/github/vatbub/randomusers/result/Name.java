@@ -14,7 +14,8 @@ public class Name {
 
     /**
      * Picks a random name from the according {@link DataSet}
-     * @param gender The {@link Gender} to pick a name for
+     *
+     * @param gender      The {@link Gender} to pick a name for
      * @param nationality The {@link Nationality} of the person to pick a name for
      * @return A random name
      */
@@ -32,6 +33,18 @@ public class Name {
         res.setLastName((String) Random.randomItem(dataSet.getLast().toArray()));
 
         return res;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Name)) {
+            return false;
+        } else {
+            Name cast = (Name) obj;
+            return cast.getTitle().equals(getTitle()) &&
+                    cast.getFirstName().equals(getFirstName()) &&
+                    cast.getLastName().equals(getLastName());
+        }
     }
 
     public String getTitle() {

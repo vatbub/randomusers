@@ -14,9 +14,60 @@ import com.google.common.hash.Hashing;
  */
 @SuppressWarnings("unused")
 public class Login {
+    private final String salt = Random.random(Random.RandomMode.lowerUpperNumbers, 8);
     private String username;
     private String password;
-    private final String salt = Random.random(Random.RandomMode.lowerUpperNumbers, 8);
+
+    /**
+     * Generates random login credentials
+     *
+     * @return A random {@link Login}
+     * @see #generateLogin(PasswordSpec)
+     */
+    public static Login generateLogin() {
+        Login res = new Login();
+        res.setUsername(generateUsername());
+        res.setPassword((String) Random.randomItem(DataSet.CommonDataSet.getPasswords().toArray()));
+        return res;
+    }
+
+    private static String generateUsername() {
+        return (String) Random.randomItem(DataSet.CommonDataSet.getUser1().toArray()) + Random.randomItem(DataSet.CommonDataSet.getUser2().toArray()) + Random.range(100, 999);
+    }
+
+    /**
+     * Generates random login credentials that follow the specified {@link PasswordSpec PasswordSpecs}
+     *
+     * @param passwordSpec The {@link PasswordSpec PasswordSpecs} to use to generate the password
+     * @return A random {@link Login} whose password follows the specified {@link PasswordSpec PasswordSpecs}
+     * @see #generateLogin()
+     */
+    public static Login generateLogin(PasswordSpec passwordSpec) {
+        Login res = new Login();
+        res.setUsername(generateUsername());
+
+        int length = Random.range(passwordSpec.getMinLength(), passwordSpec.getMaxLength());
+        StringBuilder password = new StringBuilder();
+        char[] array = PasswordSpec.PasswordCharset.getAvailableChars(passwordSpec.getCharsets()).toCharArray();
+        while (password.length() < length) {
+            password.append(array[Random.range(0, array.length - 1)]);
+        }
+
+        res.setPassword(password.toString());
+        return res;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Login)) {
+            return false;
+        } else {
+            Login cast = (Login) obj;
+            return cast.getUsername().equals(getUsername()) &&
+                    cast.getPassword().equals(getPassword()) &&
+                    cast.getSalt().equals(getSalt());
+        }
+    }
 
     public String getUsername() {
         return username;
@@ -36,6 +87,7 @@ public class Login {
 
     /**
      * A random {@code String} that is 8 characters long and
+     *
      * @return
      */
     public String getSalt() {
@@ -49,9 +101,10 @@ public class Login {
 
     /**
      * Calculates the MD5-Hash of the concatenation of the password and the salt.
+     *
+     * @return The MD5-Hash of the concatenation of the password and the salt.
      * @see #getSalt()
      * @see #getPassword()
-     * @return The MD5-Hash of the concatenation of the password and the salt.
      */
     public String getMD5() {
         return getHashCode(Hashing.md5().newHasher()).toString();
@@ -59,9 +112,10 @@ public class Login {
 
     /**
      * Calculates the SHA1-Hash of the concatenation of the password and the salt.
+     *
+     * @return The SHA1-Hash of the concatenation of the password and the salt.
      * @see #getSalt()
      * @see #getPassword()
-     * @return The SHA1-Hash of the concatenation of the password and the salt.
      */
     public String getSHA1() {
         return getHashCode(Hashing.sha1().newHasher()).toString();
@@ -69,49 +123,13 @@ public class Login {
 
     /**
      * Calculates the SHA256-Hash of the concatenation of the password and the salt.
+     *
+     * @return The SHA256-Hash of the concatenation of the password and the salt.
      * @see #getSalt()
      * @see #getPassword()
-     * @return The SHA256-Hash of the concatenation of the password and the salt.
      */
     public String getSHA256() {
         return getHashCode(Hashing.sha256().newHasher()).toString();
-    }
-
-    /**
-     * Generates random login credentials
-     * @return A random {@link Login}
-     * @see #generateLogin(PasswordSpec)
-     */
-    public static Login generateLogin(){
-        Login res = new Login();
-        res.setUsername(generateUsername());
-        res.setPassword((String) Random.randomItem(DataSet.CommonDataSet.getPasswords().toArray()));
-        return res;
-    }
-
-    private static String generateUsername(){
-        return (String) Random.randomItem(DataSet.CommonDataSet.getUser1().toArray()) + Random.randomItem(DataSet.CommonDataSet.getUser2().toArray()) + Random.range(100, 999);
-    }
-
-    /**
-     * Generates random login credentials that follow the specified {@link PasswordSpec PasswordSpecs}
-     * @param passwordSpec The {@link PasswordSpec PasswordSpecs} to use to generate the password
-     * @return A random {@link Login} whose password follows the specified {@link PasswordSpec PasswordSpecs}
-     * @see #generateLogin()
-     */
-    public static Login generateLogin(PasswordSpec passwordSpec){
-        Login res = new Login();
-        res.setUsername(generateUsername());
-
-        int length = Random.range(passwordSpec.getMinLength(), passwordSpec.getMaxLength());
-        StringBuilder password = new StringBuilder();
-        char[] array = PasswordSpec.PasswordCharset.getAvailableChars(passwordSpec.getCharset()).toCharArray();
-        while (password.length()<length) {
-            password.append(array[Random.range(0, array.length - 1)]);
-        }
-
-        res.setPassword(password.toString());
-        return res;
     }
 
     @Override
