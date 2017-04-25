@@ -22,7 +22,12 @@ package com.github.vatbub.randomusers.result;
 
 
 import javafx.scene.image.Image;
+import org.apache.commons.io.FileUtils;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Avatar pictures of {@link RandomUser}s
@@ -35,6 +40,90 @@ public class AvatarPicture {
 
     public AvatarPicture(int imageID) {
         this.imageID = imageID;
+    }
+
+    public static void main(String[] args) {
+        String baseURL = "https://randomuser.me/api/portraits/";
+        String basePath = "C:\\Users\\Frederik\\git\\randomusers\\src\\main\\resources\\com\\github\\vatbub\\randomusers\\images";
+
+        for (int i = 0; i < 100; i++) {
+            // men
+            // normal
+            String subfolder = "men";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // large
+            subfolder = "med/men";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // thumbnail
+            subfolder = "thumb/men";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // women
+            // normal
+            subfolder = "women";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // large
+            subfolder = "med/women";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // thumbnail
+            subfolder = "thumb/women";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        for (int i = 0; i < 10; i++) {
+            // lego
+            // normal
+            String subfolder = "lego";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // large
+            subfolder = "med/lego";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // thumbnail
+            subfolder = "thumb/lego";
+            try {
+                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
