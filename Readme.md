@@ -20,7 +20,6 @@ This library generates random user data (just like Lorem ipsum but with people).
       <groupId>com.github.vatbub</groupId>
       <artifactId>randomusers</artifactId>
       <version>1.0</version>
-      <type>pom</type>
     </dependency>
 </dependencies>
  ```
