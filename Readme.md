@@ -2,19 +2,8 @@
 This library generates random user data (just like Lorem ipsum but with people). The idea (and data) originates from [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) and I decided to do a complete Java implementation of it. It currently supports all the features of [randomuser.me](randomuser.me) except for avatar images, but this is in the works.
  
  # Download
- We expect approval for Bintray JCenter in the following days. Once this is done, we can push randomusers to maven central, but for now, you need to add the following to your pom in order to use it:
+ Yay, it's on Maven central! You only need to specify this dependency in your pom to get the jar:
  ```xml
- <repositories>
-     <repository>
-         <snapshots>
-             <enabled>false</enabled>
-         </snapshots>
-         <id>bintray-vatbub-fokprojectsReleases</id>
-         <name>bintray</name>
-         <url>http://dl.bintray.com/vatbub/fokprojectsReleases</url>
-     </repository>
- </repositories>
- 
  <dependencies>
     <dependency>
       <groupId>com.github.vatbub</groupId>
