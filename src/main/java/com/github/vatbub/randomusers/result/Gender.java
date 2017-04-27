@@ -25,5 +25,18 @@ package com.github.vatbub.randomusers.result;
  * The gender of {@link RandomUser}s
  */
 public enum Gender {
-    male, female
+    male, female, lego;
+
+    public String getGenderText() {
+        switch (this) {
+            case male:
+                return "men";
+            case female:
+                return "women";
+            case lego:
+                return "lego";
+        }
+
+        throw new IllegalStateException("Internal bug in randomusers, sorry");
+    }
 }

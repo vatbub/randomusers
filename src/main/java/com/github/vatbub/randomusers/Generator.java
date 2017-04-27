@@ -70,10 +70,15 @@ public class Generator {
             nationality = (Nationality) Random.randomItem(spec.getNationalities().toArray());
         }
 
-        if (spec.getGenders() == null) {
-            gender = generateRandomGender();
+        if (!(nationality instanceof Nationality.Lego)) {
+            if (spec.getGenders() == null) {
+                gender = generateRandomGender();
+            } else {
+                gender = (Gender) Random.randomItem(spec.getGenders().toArray());
+            }
         } else {
-            gender = (Gender) Random.randomItem(spec.getGenders().toArray());
+            // Nationality is lego so set the gender to lego too
+            gender = Gender.lego;
         }
 
         Name name = nationality.generateName(gender);
@@ -102,7 +107,16 @@ public class Generator {
 
         String phone = nationality.generatePhoneNumber();
         String cell = nationality.generateCellPhoneNumber();
-        AvatarPicture picture = null;
+
+        int imageID;
+
+        if (gender.equals(Gender.lego)) {
+            imageID = Random.range(0, 9);
+        } else {
+            imageID = Random.range(0, 99);
+        }
+
+        AvatarPicture picture = new AvatarPicture(imageID, gender);
 
         return new RandomUser(gender, name, location, email, login, dateOfBirth, registrationDate, phone, cell, picture, nationality);
     }
@@ -122,7 +136,7 @@ public class Generator {
      * @return A random {@link Gender}
      */
     private static Gender generateRandomGender() {
-        return (Gender) Random.randomItem(Gender.values());
+        return (Gender) Random.randomItem(new Gender[]{Gender.male, Gender.female});
     }
 
     /**

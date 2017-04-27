@@ -21,125 +21,60 @@ package com.github.vatbub.randomusers.result;
  */
 
 
-import javafx.scene.image.Image;
-import org.apache.commons.io.FileUtils;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.io.File;
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Avatar pictures of {@link RandomUser}s
+ * Avatar pictures of {@link RandomUser}s.
+ * The methods will return a URL where you can download the profile image from.
+ * Images are served from <a href="https://randomuser.me/">randomuser.me</a>.
+ * Please read their <a href="https://randomuser.me/copyright">Copyright Notice</a> to learn how you may use the pictures.
  */
 @SuppressWarnings("unused")
 public class AvatarPicture {
-    // TODO: Implement the image generation
-    @SuppressWarnings("FieldCanBeLocal")
+    static final String largePrefix = "";
+    static final String mediumPrefix = "med/";
+    static final String thumbnailPrefix = "thumb/";
+    private static final String baseURL = "https://randomuser.me/api/portraits/";
     private int imageID;
+    private Gender gender;
 
-    public AvatarPicture(int imageID) {
-        this.imageID = imageID;
+    public AvatarPicture(int imageID, Gender gender) {
+        setImageID(imageID);
+        setGender(gender);
     }
 
-    public static void main(String[] args) {
-        String baseURL = "https://randomuser.me/api/portraits/";
-        String basePath = "C:\\Users\\Frederik\\git\\randomusers\\src\\main\\resources\\com\\github\\vatbub\\randomusers\\images";
-
-        for (int i = 0; i < 100; i++) {
-            // men
-            // normal
-            String subfolder = "men";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // large
-            subfolder = "med/men";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // thumbnail
-            subfolder = "thumb/men";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // women
-            // normal
-            subfolder = "women";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // large
-            subfolder = "med/women";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // thumbnail
-            subfolder = "thumb/women";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            // lego
-            // normal
-            String subfolder = "lego";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // large
-            subfolder = "med/lego";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // thumbnail
-            subfolder = "thumb/lego";
-            try {
-                FileUtils.copyURLToFile(new URL(baseURL + subfolder + "/" + i + ".jpg"), new File(basePath + "\\" + subfolder.replace("/", "\\") + "\\" + i + ".jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof AvatarPicture && ((AvatarPicture) obj).imageID == this.imageID;
+        return obj instanceof AvatarPicture && ((AvatarPicture) obj).getImageID() == this.getImageID() && ((AvatarPicture) obj).getGender() == this.getGender();
     }
 
-    public Image getLargePicture() {
-        throw new NotImplementedException();
+    public Gender getGender() {
+        return gender;
     }
 
-    public Image getMediumPicture() {
-        throw new NotImplementedException();
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
-    public Image getThumbnailPicture() {
-        throw new NotImplementedException();
+    public int getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
+    }
+
+    public URL getLargePicture() throws MalformedURLException {
+        return new URL(baseURL + largePrefix + getGender().getGenderText() + "/" + getImageID() + ".jpg");
+    }
+
+    public URL getMediumPicture() throws MalformedURLException {
+        return new URL(baseURL + mediumPrefix + getGender().getGenderText() + "/" + getImageID() + ".jpg");
+    }
+
+    public URL getThumbnailPicture() throws MalformedURLException {
+        return new URL(baseURL + thumbnailPrefix + getGender().getGenderText() + "/" + getImageID() + ".jpg");
     }
 }

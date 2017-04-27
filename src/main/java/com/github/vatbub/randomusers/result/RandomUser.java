@@ -71,7 +71,7 @@ public class RandomUser {
                     cast.getLogin().equals(getLogin()) &&
                     cast.getPhone().equals(getPhone()) &&
                     cast.getCell().equals(getCell()) &&
-                    // TODO cast.getPicture().equals(getPicture()) &&
+                    cast.getPicture().equals(getPicture()) &&
                     cast.getNationality().equals(getNationality());
 
             Calendar birthdayCalendar1 = Calendar.getInstance();

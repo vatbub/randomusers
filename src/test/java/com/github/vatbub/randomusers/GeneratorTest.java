@@ -27,6 +27,7 @@ import com.github.vatbub.randomusers.result.Nationality;
 import com.github.vatbub.randomusers.result.RandomUser;
 import org.junit.Test;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,7 +139,7 @@ public class GeneratorTest {
         assert randomUser.getName().getFirstName() != null;
         assert randomUser.getName().getLastName() != null;
 
-        assert (randomUser.getGender() == Gender.male || randomUser.getGender() == Gender.female);
+        assert (randomUser.getGender() == Gender.male || randomUser.getGender() == Gender.female || randomUser.getGender() == Gender.lego);
 
         assert randomUser.getCell() != null;
         assert randomUser.getPhone() != null;
@@ -160,7 +161,22 @@ public class GeneratorTest {
         assert randomUser.getLogin().getUsername() != null;
 
         assert randomUser.getNationality() != null;
-        // assert randomUser.getPicture()!=null;
+
+        assert randomUser.getPicture() != null;
+        try {
+            assert randomUser.getPicture().getLargePicture() != null;
+            assert randomUser.getPicture().getMediumPicture() != null;
+            assert randomUser.getPicture().getThumbnailPicture() != null;
+
+            System.out.println("Image urls:");
+            System.out.println(randomUser.getPicture().getLargePicture());
+            System.out.println(randomUser.getPicture().getMediumPicture());
+            System.out.println(randomUser.getPicture().getThumbnailPicture());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            assert false;
+        }
+
         assert randomUser.getRegistrationDate() != null;
     }
 }

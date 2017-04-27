@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-vatbub-fokprojectsReleases</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/vatbub/fokprojectsReleases</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-vatbub-fokprojectsSnapshots</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/vatbub/fokprojectsSnapshots</url>
+        </repository>
+        <repository>
+            <snapshots/>
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-vatbub-fokprojectsSnapshots</id>
+            <name>bintray-plugins</name>
+            <url>http://dl.bintray.com/vatbub/fokprojectsSnapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+    <parent>
+        <groupId>com.github.vatbub</groupId>
+        <artifactId>parentPom</artifactId>
+        <version>0.0.21-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>randomusers.offlinePictures</artifactId>
+    <version>1.1-SNAPSHOT</version>
+
+    <name>Random Users</name>
+    <description>API for generating random user data. Like Lorem Ipsum, but for people.</description>
+    <inceptionYear>2017</inceptionYear>
+    <url>https://github.com/vatbub/${gitRepoName}</url>
+
+    <scm>
+        <connection>scm:git:git@github.com:vatbub/${gitRepoName}.git</connection>
+        <url>https://github.com/vatbub/${gitRepoName}</url>
+        <developerConnection>scm:git:git@github.com:vatbub/${gitRepoName}.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/vatbub/${gitRepoName}/issues</url>
+    </issueManagement>
+
+    <!-- <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/vatbub/${gitRepoName}</url>
+    </ciManagement> -->
+
+    <properties>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <gitRepoName>randomusers</gitRepoName>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.vatbub</groupId>
+            <artifactId>randomusers</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+</project>
