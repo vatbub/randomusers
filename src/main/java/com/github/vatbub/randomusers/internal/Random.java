@@ -82,7 +82,15 @@ public class Random {
         return array[Random.range(0, array.length - 1)];
     }
 
-    @SuppressWarnings("UnnecessaryEnumModifier")
+    /**
+     * Resets the random number generator with the given seed. That means that after each call to this method using the same seed, all methods of this class will return the same values again
+     *
+     * @param seed The seed to use
+     */
+    public static void setSeed(long seed) {
+        randomNumberGenerator = new java.util.Random(seed);
+    }
+
     /**
      * Charset for the {@link #random(RandomMode, int)}-method<br>
      * <br>
@@ -91,15 +99,8 @@ public class Random {
      * {@code numbers}: All numbers from 0 to 9
      * {@code lowerUpperNumbers}:   Everything mentioned earlier
      */
+    @SuppressWarnings("UnnecessaryEnumModifier")
     public static enum RandomMode {
         lower, lowerUpperNumbers, upper, numbers
-    }
-
-    /**
-     * Reinitializes the random number generator with the given seed. That means that after each call to this method using the same seed, all methods of this class will return the same values again
-     * @param seed The seed to use
-     */
-    public static void setSeed(long seed){
-        randomNumberGenerator = new java.util.Random(seed);
     }
 }

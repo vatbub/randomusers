@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Frederik on 24/04/2017.
+ * Unit tests for the {@link Login}-class
  */
 public class LoginTest {
     @Test

@@ -6,7 +6,7 @@ import com.github.vatbub.randomusers.result.RandomUser;
 import org.junit.Test;
 
 /**
- * Created by Frederik on 27/04/2017.
+ * Tests the offline image functionality
  */
 public class OfflineAvatarPictureTests {
     @Test

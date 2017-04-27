@@ -180,7 +180,7 @@ public class Generator {
             }
         }
 
-        public void setExactLength(int exactLength) {
+        public void setExactLength(@SuppressWarnings("SameParameterValue") int exactLength) {
             setMinLength(exactLength);
             setMaxLength(exactLength);
         }

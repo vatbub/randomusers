@@ -107,9 +107,9 @@ public class Login {
     }
 
     /**
-     * A random {@code String} that is 8 characters long and
+     * A constant but random {@code String} that is 8 characters long and contains lower- and uppercase letters and numbers
      *
-     * @return
+     * @return A constant but random {@code String} that is 8 characters long and contains lower- and uppercase letters and numbers
      */
     public String getSalt() {
         return salt;

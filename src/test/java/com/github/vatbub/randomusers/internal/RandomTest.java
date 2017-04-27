@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Frederik on 24/04/2017.
+ * UNit tests for the {@link Random}-class
  */
 public class RandomTest {
     @Test
