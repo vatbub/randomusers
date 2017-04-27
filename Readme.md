@@ -1,5 +1,5 @@
 # randomusers
-This library generates random user data (just like Lorem ipsum but with people). The idea (and data) originates from [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) and I decided to do a complete Java implementation of it. It currently supports all the features of [randomuser.me](randomuser.me) except for avatar images, but this is in the works.
+This library generates random user data (just like Lorem ipsum but with people). The idea (and data) originates from [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) and I decided to do a complete Java implementation of it. It currently supports all the features of [randomuser.me](https://randomuser.me/) except for avatar images, but this is in the works.
  
  # Download
  Yay, it's on Maven central! You only need to specify this dependency in your pom to get the jar:
@@ -15,7 +15,7 @@ This library generates random user data (just like Lorem ipsum but with people).
  
  If you don't use maven or gradle, you can download the latest jar [here](https://bintray.com/vatbub/fokprojectsReleases/randomusers#downloads).
  
- Contrary to [randomuser.me](randomuser.me), this library works completely offline meaning that you need no more internet connection once you downloaded the jar.
+ Contrary to [randomuser.me](https://randomuser.me/), this library works completely offline meaning that you need no more internet connection once you downloaded the jar.
  
  # Usage
  To get one single user which is completely random, just call
