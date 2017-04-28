@@ -1,22 +1,40 @@
 # randomusers
-This library generates random user data (just like Lorem ipsum but with people). The idea (and data) originates from [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) and I decided to do a complete Java implementation of it. It currently supports all the features of [randomuser.me](https://randomuser.me/) except for avatar images, but this is in the works.
+This library generates random user data (just like Lorem ipsum but with people). The idea (and data) originates from [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) and I decided to do a complete Java implementation of it. It currently supports all the features of [randomuser.me](https://randomuser.me/) (including all the secret ones too ;) ).
  
  # Download
- Yay, it's on Maven central! You only need to specify this dependency in your pom to get the jar:
+ This library works completely offline meaning that you don't need no internet connection after you downloaded it. 
+ However, we know that avatar images can be quite heavy and if you don't need the avatar images to be available offline, you don't 
+ want a jar that is full with stuff you don't need. That is why we give you the choice: 
+  - A jar without the avatar images. If you pick this option, you can still generate URLs for avatar images but you need to download them from the internet rather than having them available offline.
+  - A jar with the avatar images in it. If you pick this option, a class will be added that allows you to convert those URLs to URLs that pont to a image that is available offline.
+ ## Without avatar images
  ```xml
- <dependencies>
+<dependencies>
     <dependency>
       <groupId>com.github.vatbub</groupId>
       <artifactId>randomusers</artifactId>
-      <version>1.0</version>
+      <version>1.1</version>
     </dependency>
 </dependencies>
  ```
  
  If you don't use maven or gradle, you can download the latest jar [here](https://bintray.com/vatbub/fokprojectsReleases/randomusers#downloads).
  
- Contrary to [randomuser.me](https://randomuser.me/), this library works completely offline meaning that you need no more internet connection once you downloaded the jar.
- 
+ ## With offline avatar images
+ ```xml
+  <dependencies>
+      <dependency>
+          <groupId>com.github.vatbub</groupId>
+          <artifactId>randomusers.offlinePictures</artifactId>
+          <version>1.1</version>
+      </dependency>
+  </dependencies>
+  ```
+  
+  If you don't use maven or gradle, you can download the latest jar [here](https://bintray.com/vatbub/fokprojectsReleases/randomusers.offlinePictures#downloads).
+  
+  To see how to convert a online avatar image url into a offline URL, see below.
+   
  # Usage
  To get one single user which is completely random, just call
  ```java
@@ -53,4 +71,20 @@ The following charsets are available:
 - `PasswordCharset.upper = ABCDEFGHIJKLMNOPQRSTUVWXYZ`
 - `PasswordCharset.lower = abcdefghijklmnopqrstuvwxyz`
 - `PasswordCharset.number = 0123456789`
+
+## Getting offline avatar images 
+   Even if you chose to use the offline image artifact, `randomUser.getPicture()` will still generate URLs that point to the online version of the image.
+   You need to convert them using a special class:
+   ```java
+    // Generates offline URLs
+    OfflineAvatarPicture offlinePicture = OfflineAvatarPicture.fromAvatarPicture(randomUser.getPicture());
+    URL largeOfflineURL = offlinePicture.getLargePicture();
+    // ...
+   ```
+   The returned URL will point to a offline resource within the artifacts jar-file that you can read.
    
+   # Demo applications
+   If you're still confused, the only thing you can do right now is to head over to [randomuser.me](https://randomuser.me/) and play around with it.
+   [randomuser.me](https://randomuser.me/) works in a very similar way to this library so understanding [randomuser.me](https://randomuser.me/) should help you with understanding this lib.
+   
+   If you wait some time though, you can have a look at the sample code which is in the works so hang tight.
