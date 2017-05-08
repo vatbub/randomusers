@@ -81,7 +81,7 @@
         <dependency>
             <groupId>com.github.vatbub</groupId>
             <artifactId>randomusers</artifactId>
-            <version>LATEST</version>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 </project>
