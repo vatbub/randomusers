@@ -43,7 +43,7 @@
 
     <artifactId>randomusers</artifactId>
     <version>1.2-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>com.github.vatbub</groupId>
