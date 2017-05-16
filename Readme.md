@@ -13,7 +13,7 @@ This library generates random user data (just like Lorem ipsum but with people).
     <dependency>
       <groupId>com.github.vatbub</groupId>
       <artifactId>randomusers</artifactId>
-      <version>1.1</version>
+      <version>1.3</version>
     </dependency>
 </dependencies>
  ```
@@ -26,7 +26,7 @@ This library generates random user data (just like Lorem ipsum but with people).
       <dependency>
           <groupId>com.github.vatbub</groupId>
           <artifactId>randomusers.offlinePictures</artifactId>
-          <version>1.1</version>
+          <version>1.3</version>
       </dependency>
   </dependencies>
   ```
