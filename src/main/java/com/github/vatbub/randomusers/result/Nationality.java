@@ -23,7 +23,9 @@ package com.github.vatbub.randomusers.result;
 
 import com.github.vatbub.randomusers.internal.Random;
 
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * A list of possible nationalities for {@link RandomUser}s
@@ -53,22 +55,59 @@ public abstract class Nationality {
         }
     }
 
-    abstract String getShortCode();
+    /**
+     * Returns a set of available nationalities.
+     *
+     * @return A set of available nationalities.
+     */
+    public static Set<Nationality> availableNationalities() {
+        Set<Nationality> res = new HashSet<>();
+        res.add(new Australian());
+        res.add(new Brazilian());
+        res.add(new Canadian());
+        res.add(new Swiss());
+        res.add(new German());
+        res.add(new Danish());
+        res.add(new Spanish());
+        res.add(new Finnish());
+        res.add(new French());
+        res.add(new British());
+        res.add(new Irish());
+        res.add(new Iranian());
+        res.add(new Dutch());
+        res.add(new New_zealand());
+        res.add(new Turkish());
+        res.add(new American());
+        return res;
+    }
 
-    abstract String generatePhoneNumber();
+    /**
+     * Returns a set of available nationalities.
+     *
+     * @return A set of available nationalities.
+     */
+    public static Set<Nationality> availableNationalities2() {
+        Set<Nationality> res = availableNationalities();
+        res.add(new Lego());
+        return res;
+    }
 
-    abstract String generateCellPhoneNumber();
+    public abstract String getShortCode();
 
-    abstract Location generateLocation();
+    public abstract String generatePhoneNumber();
 
-    abstract Name generateName(Gender gender);
+    public abstract String generateCellPhoneNumber();
+
+    public abstract Location generateLocation();
+
+    public abstract Name generateName(Gender gender);
 
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Nationality && ((Nationality) obj).getShortCode().equals(this.getShortCode());
     }
 
-    static class Australian extends Nationality {
+    public static class Australian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -99,7 +138,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Brazilian extends Nationality {
+    public static class Brazilian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -127,7 +166,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Canadian extends Nationality {
+    public static class Canadian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -155,7 +194,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Swiss extends Nationality {
+    public static class Swiss extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -188,7 +227,7 @@ public abstract class Nationality {
         }
     }
 
-    static class German extends Nationality {
+    public static class German extends Nationality {
         @Override
         public String getShortCode() {
             return "DE";
@@ -215,7 +254,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Danish extends Nationality {
+    public static class Danish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -243,7 +282,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Spanish extends Nationality {
+    public static class Spanish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -271,7 +310,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Finnish extends Nationality {
+    public static class Finnish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -299,7 +338,7 @@ public abstract class Nationality {
         }
     }
 
-    static class French extends Nationality {
+    public static class French extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -327,7 +366,7 @@ public abstract class Nationality {
         }
     }
 
-    static class British extends Nationality {
+    public static class British extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -391,7 +430,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Irish extends Nationality {
+    public static class Irish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -419,7 +458,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Iranian extends Nationality {
+    public static class Iranian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -447,7 +486,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Dutch extends Nationality {
+    public static class Dutch extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -475,7 +514,7 @@ public abstract class Nationality {
         }
     }
 
-    static class New_zealand extends Nationality {
+    public static class New_zealand extends Nationality {
         @Override
         public String getShortCode() {
             return "NZ";
@@ -502,7 +541,7 @@ public abstract class Nationality {
         }
     }
 
-    static class Turkish extends Nationality {
+    public static class Turkish extends Nationality {
         @Override
         public String getShortCode() {
             return "TR";
@@ -529,7 +568,7 @@ public abstract class Nationality {
         }
     }
 
-    static class American extends Nationality {
+    public static class American extends Nationality {
         @Override
         public String getShortCode() {
             return "US";
@@ -557,7 +596,7 @@ public abstract class Nationality {
     }
 
     @SuppressWarnings("unused")
-    static class Lego extends Nationality {
+    public static class Lego extends Nationality {
 
         @SuppressWarnings("unused")
         @Override
