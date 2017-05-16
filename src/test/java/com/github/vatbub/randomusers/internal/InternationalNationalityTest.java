@@ -21,15 +21,16 @@ package com.github.vatbub.randomusers.internal;
  */
 
 
+import com.github.vatbub.randomusers.result.Nationality;
 import org.junit.Test;
 
 /**
- * Tests for the {@link InternalNationality} class
+ * Tests for the {@link Nationality} class
  */
 public class InternationalNationalityTest {
     @Test
     public void nationalityFromDefaultLocaleNotNullTest() {
         //noinspection ConstantConditions
-        assert InternalNationality.getFromCurrentDefaultLocale() != null;
+        assert Nationality.getFromCurrentDefaultLocale() != null;
     }
 }

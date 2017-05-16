@@ -21,26 +21,54 @@ package com.github.vatbub.randomusers.result;
  */
 
 
-import com.github.vatbub.randomusers.internal.InternalNationality;
 import com.github.vatbub.randomusers.internal.Random;
+
+import java.util.Locale;
 
 /**
  * A list of possible nationalities for {@link RandomUser}s
  */
-public interface Nationality {
+public abstract class Nationality {
     // australian, brazilian, canadian, swiss, german, danish, spanish, finnish, french, british, irish, iranian, dutch, new_zealand, turkish, american, lego;
 
-    String getShortCode();
+    /**
+     * Converts the current default locale to a {@link Nationality}
+     *
+     * @return The {@link Nationality} that represents the current default Locale
+     */
+    public static Nationality getFromCurrentDefaultLocale() {
+        Locale currentLocale = Locale.getDefault();
+        if (currentLocale.equals(Locale.ENGLISH) || currentLocale.equals(Locale.UK)) {
+            return new Nationality.British();
+        } else if (currentLocale.equals(Locale.CANADA) || currentLocale.equals(Locale.CANADA_FRENCH)) {
+            return new Nationality.Canadian();
+        } else if (currentLocale.equals(Locale.FRANCE) || currentLocale.equals(Locale.FRENCH)) {
+            return new Nationality.French();
+        } else if (currentLocale.equals(Locale.GERMAN) || currentLocale.equals(Locale.GERMANY)) {
+            return new Nationality.German();
+        } else if (currentLocale.equals(Locale.US)) {
+            return new Nationality.American();
+        } else {
+            return new Nationality.American();
+        }
+    }
 
-    String generatePhoneNumber();
+    abstract String getShortCode();
 
-    String generateCellPhoneNumber();
+    abstract String generatePhoneNumber();
 
-    Location generateLocation();
+    abstract String generateCellPhoneNumber();
 
-    Name generateName(Gender gender);
+    abstract Location generateLocation();
 
-    class Australian extends InternalNationality implements Nationality {
+    abstract Name generateName(Gender gender);
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Nationality && ((Nationality) obj).getShortCode().equals(this.getShortCode());
+    }
+
+    static class Australian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -71,7 +99,7 @@ public interface Nationality {
         }
     }
 
-    class Brazilian extends InternalNationality implements Nationality {
+    static class Brazilian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -99,7 +127,7 @@ public interface Nationality {
         }
     }
 
-    class Canadian extends InternalNationality implements Nationality {
+    static class Canadian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -127,7 +155,7 @@ public interface Nationality {
         }
     }
 
-    class Swiss extends InternalNationality implements Nationality {
+    static class Swiss extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -160,7 +188,7 @@ public interface Nationality {
         }
     }
 
-    class German extends InternalNationality implements Nationality {
+    static class German extends Nationality {
         @Override
         public String getShortCode() {
             return "DE";
@@ -187,7 +215,7 @@ public interface Nationality {
         }
     }
 
-    class Danish extends InternalNationality implements Nationality {
+    static class Danish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -215,7 +243,7 @@ public interface Nationality {
         }
     }
 
-    class Spanish extends InternalNationality implements Nationality {
+    static class Spanish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -243,7 +271,7 @@ public interface Nationality {
         }
     }
 
-    class Finnish extends InternalNationality implements Nationality {
+    static class Finnish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -271,7 +299,7 @@ public interface Nationality {
         }
     }
 
-    class French extends InternalNationality implements Nationality {
+    static class French extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -299,7 +327,7 @@ public interface Nationality {
         }
     }
 
-    class British extends InternalNationality implements Nationality {
+    static class British extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -363,7 +391,7 @@ public interface Nationality {
         }
     }
 
-    class Irish extends InternalNationality implements Nationality {
+    static class Irish extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -391,7 +419,7 @@ public interface Nationality {
         }
     }
 
-    class Iranian extends InternalNationality implements Nationality {
+    static class Iranian extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -419,7 +447,7 @@ public interface Nationality {
         }
     }
 
-    class Dutch extends InternalNationality implements Nationality {
+    static class Dutch extends Nationality {
 
         @Override
         public String getShortCode() {
@@ -447,7 +475,7 @@ public interface Nationality {
         }
     }
 
-    class New_zealand extends InternalNationality implements Nationality {
+    static class New_zealand extends Nationality {
         @Override
         public String getShortCode() {
             return "NZ";
@@ -474,7 +502,7 @@ public interface Nationality {
         }
     }
 
-    class Turkish extends InternalNationality implements Nationality {
+    static class Turkish extends Nationality {
         @Override
         public String getShortCode() {
             return "TR";
@@ -501,7 +529,7 @@ public interface Nationality {
         }
     }
 
-    class American extends InternalNationality implements Nationality {
+    static class American extends Nationality {
         @Override
         public String getShortCode() {
             return "US";
@@ -529,7 +557,7 @@ public interface Nationality {
     }
 
     @SuppressWarnings("unused")
-    class Lego extends InternalNationality implements Nationality {
+    static class Lego extends Nationality {
 
         @SuppressWarnings("unused")
         @Override
