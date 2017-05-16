@@ -39,12 +39,12 @@
     <parent>
         <groupId>com.github.vatbub</groupId>
         <artifactId>parentPom</artifactId>
-        <version>0.0.20</version>
+        <version>0.0.21-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>randomusers.offlinePictures</artifactId>
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT</version>
 
     <name>Random Users with offline Pictures</name>
     <description>API for generating random user data. Like Lorem Ipsum, but for people. This version adds the
@@ -57,7 +57,7 @@
         <connection>scm:git:git@github.com:vatbub/${gitRepoName}.git</connection>
         <url>https://github.com/vatbub/${gitRepoName}</url>
         <developerConnection>scm:git:git@github.com:vatbub/${gitRepoName}.git</developerConnection>
-        <tag>randomusers.offlinePictures-1.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
@@ -80,7 +80,7 @@
         <dependency>
             <groupId>com.github.vatbub</groupId>
             <artifactId>randomusers</artifactId>
-            <version>1.3</version>
+            <version>1.4-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
