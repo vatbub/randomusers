@@ -123,17 +123,11 @@ public class GeneratorTest {
         for (int i = 0; i < numberOfUsersToGenerate; i++) {
             assertUser(randomUsers.get(i));
             assertUser(randomUsers2.get(i));
-            if (!randomUsers.get(i).equals(randomUsers2.get(i))) {
-                System.out.println("Stopping...");
-            }
             assert randomUsers.get(i).equals(randomUsers2.get(i));
         }
     }
 
     private void assertUser(RandomUser randomUser) {
-        System.out.println(randomUser.toString());
-        System.out.println(randomUser.getNationality());
-
         assert randomUser.getName() != null;
         assert randomUser.getName().getTitle() != null;
         assert randomUser.getName().getFirstName() != null;
@@ -167,11 +161,6 @@ public class GeneratorTest {
             assert randomUser.getPicture().getLargePicture() != null;
             assert randomUser.getPicture().getMediumPicture() != null;
             assert randomUser.getPicture().getThumbnailPicture() != null;
-
-            System.out.println("Image urls:");
-            System.out.println(randomUser.getPicture().getLargePicture());
-            System.out.println(randomUser.getPicture().getMediumPicture());
-            System.out.println(randomUser.getPicture().getThumbnailPicture());
         } catch (MalformedURLException e) {
             e.printStackTrace();
             assert false;
