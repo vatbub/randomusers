@@ -63,37 +63,37 @@ public class DataSet {
 
         String resourcePackage = nationality.getShortCode() + "/lists";
 
-        Scanner scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/cities.txt"));
+        Scanner scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/cities.txt"), "UTF-8");
         res.cities = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.cities.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/female_first.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/female_first.txt"), "UTF-8");
         res.femaleFirst = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.femaleFirst.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/male_first.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/male_first.txt"), "UTF-8");
         res.maleFirst = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.maleFirst.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/last.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/last.txt"), "UTF-8");
         res.last = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.last.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/states.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/states.txt"), "UTF-8");
         res.states = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.states.add(scanner.nextLine());
         }
 
-        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/street.txt"));
+        scanner = new Scanner(DataSet.class.getResourceAsStream(resourcePackage + "/street.txt"), "UTF-8");
         res.street = new ArrayList<>();
         while (scanner.hasNextLine()) {
             res.street.add(scanner.nextLine());
@@ -136,7 +136,7 @@ public class DataSet {
         private static List<String> user2;
 
         private static void loadPasswords() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/passwords.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/passwords.txt"), "UTF-8");
             passwords = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 passwords.add(scanner.nextLine());
@@ -144,7 +144,7 @@ public class DataSet {
         }
 
         private static void loadTitle() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/title.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/title.txt"), "UTF-8");
             title = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 title.add(scanner.nextLine());
@@ -152,7 +152,7 @@ public class DataSet {
         }
 
         private static void loadUser1() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/user1.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/user1.txt"), "UTF-8");
             user1 = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 user1.add(scanner.nextLine());
@@ -160,7 +160,7 @@ public class DataSet {
         }
 
         private static void loadUser2() {
-            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/user2.txt"));
+            Scanner scanner = new Scanner(DataSet.class.getResourceAsStream("common/lists/user2.txt"), "UTF-8");
             user2 = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 user2.add(scanner.nextLine());
