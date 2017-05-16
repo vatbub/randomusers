@@ -1,4 +1,4 @@
-package com.github.vatbub.randomusers.internal;
+package com.github.vatbub.randomusers.result;
 
 /*-
  * #%L
@@ -21,13 +21,12 @@ package com.github.vatbub.randomusers.internal;
  */
 
 
-import com.github.vatbub.randomusers.result.Nationality;
 import org.junit.Test;
 
 /**
  * Tests for the {@link Nationality} class
  */
-public class InternationalNationalityTest {
+public class NationalityTest {
     @Test
     public void nationalityFromDefaultLocaleNotNullTest() {
         //noinspection ConstantConditions
