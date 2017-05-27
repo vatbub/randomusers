@@ -26,7 +26,6 @@ import com.github.vatbub.randomusers.data.DataSet;
 import com.github.vatbub.randomusers.internal.Random;
 import com.google.common.base.Charsets;
 import com.google.common.hash.HashCode;
-import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 
@@ -116,7 +115,6 @@ public class Login {
     }
 
     private HashCode getHashCode(Hasher hasher) {
-        HashFunction hashFunction = Hashing.md5();
         return hasher.putString(getPassword() + getSalt(), Charsets.UTF_8).hash();
     }
 
