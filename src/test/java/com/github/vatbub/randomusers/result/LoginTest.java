@@ -39,6 +39,16 @@ public class LoginTest {
     }
 
     @Test
+    public void hashTest() {
+        Login login = Login.generateLogin();
+
+        // check if we don't get a object reference instead of a hash code
+        assert !login.getMD5().contains("@");
+        assert !login.getSHA1().contains("@");
+        assert !login.getSHA256().contains("@");
+    }
+
+    @Test
     public void passwordSpecTest() {
         Generator.PasswordSpec passwordSpec = new Generator.PasswordSpec();
         passwordSpec.setMinLength(49);
