@@ -22,6 +22,7 @@ package com.github.vatbub.randomusers.result;
 
 
 import com.github.vatbub.randomusers.Generator;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -89,5 +90,17 @@ public class LoginTest {
         for (char chr : res.getPassword().toCharArray()) {
             assert Generator.PasswordSpec.PasswordCharset.getAvailableChars(charsets).contains(String.valueOf(chr));
         }
+    }
+
+    @Test
+    public void illegalEqualsTest() {
+        //noinspection EqualsBetweenInconvertibleTypes
+        Assert.assertFalse(Login.generateLogin().equals(""));
+    }
+
+    @Test
+    public void toStringTest() {
+        Login login = Login.generateLogin();
+        Assert.assertEquals("username: " + login.getUsername() + ", password: " + login.getPassword() + ", salt: " + login.getSalt(), login.toString());
     }
 }

@@ -21,10 +21,12 @@ package com.github.vatbub.randomusers;
  */
 
 
+import com.github.vatbub.randomusers.Generator.PasswordSpec.PasswordCharset;
 import com.github.vatbub.randomusers.internal.Random;
 import com.github.vatbub.randomusers.result.Gender;
 import com.github.vatbub.randomusers.result.Nationality;
 import com.github.vatbub.randomusers.result.RandomUser;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.net.MalformedURLException;
@@ -53,9 +55,23 @@ public class GeneratorTest {
     }
 
     @Test
-    public void genderSpecTest() {
+    public void genderSpecTestFemale() {
+        testGender(Gender.female);
+    }
+
+    @Test
+    public void genderSpecTestMale() {
+        testGender(Gender.male);
+    }
+
+    @Test
+    public void genderSpecTestSuperSecret() {
+        // don't tell anybody
+        testGender(Gender.lego);
+    }
+
+    private void testGender(Gender genderToTest) {
         int numberOfUsersToGenerate = 100;
-        Gender genderToTest = Gender.female;
         RandomUser.RandomUserSpec spec = new RandomUser.RandomUserSpec();
         List<Gender> genders = new ArrayList<>();
         genders.add(genderToTest);
@@ -97,6 +113,7 @@ public class GeneratorTest {
         nationalities.add(new Nationality.German());
         nationalities.add(new Nationality.French());
         nationalities.add(new Nationality.Finnish());
+        nationalities.add(new Nationality.Lego());
         spec.setNationalities(nationalities);
 
         List<RandomUser> randomUsers = Generator.generateRandomUsers(spec, numberOfUsersToGenerate);
@@ -127,7 +144,24 @@ public class GeneratorTest {
         }
     }
 
+    @Test
+    public void passwordSpecTest(){
+        RandomUser.RandomUserSpec spec = new RandomUser.RandomUserSpec();
+        Generator.PasswordSpec passwordSpec = new Generator.PasswordSpec();
+        passwordSpec.setExactLength(40);
+        List<PasswordCharset> charsets = new ArrayList<>();
+        charsets.add(PasswordCharset.number);
+        passwordSpec.setCharsets(charsets);
+        spec.setPasswordSpec(passwordSpec);
+        RandomUser randomUser = Generator.generateRandomUser(spec);
+        assertUser(randomUser);
+
+        Assert.assertTrue(randomUser.getLogin().getPassword().matches("[0-9]*"));
+    }
+
     private void assertUser(RandomUser randomUser) {
+        //noinspection EqualsBetweenInconvertibleTypes
+        Assert.assertFalse(randomUser.equals(""));
         assert randomUser.getName() != null;
         assert randomUser.getName().getTitle() != null;
         assert randomUser.getName().getFirstName() != null;
@@ -167,5 +201,7 @@ public class GeneratorTest {
         }
 
         assert randomUser.getRegistrationDate() != null;
+
+        Assert.assertEquals(randomUser.getName().toString() + ", " + randomUser.getGender().toString(), randomUser.toString());
     }
 }
