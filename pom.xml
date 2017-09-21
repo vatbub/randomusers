@@ -26,7 +26,7 @@
     <parent>
         <groupId>com.github.vatbub</groupId>
         <artifactId>parentPom</artifactId>
-        <version>0.0.22-SNAPSHOT</version>
+        <version>0.0.23-SNAPSHOT</version>
     </parent>
 
     <name>Random Users</name>
