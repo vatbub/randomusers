@@ -53,7 +53,8 @@ This library generates random user data (just like Lorem ipsum but with people).
    - `setNationalities(List<Nationality> nationalities)` will force the generated users to have one of the nationalities listed in that list
    - `setPasswordSpec(PasswordSpec passwordSpec)` specifies how the login passwords are generated (see more below)
    - `setSeed(long seed)` Using the same seed across multiple calls to the Generator will always result in the same user (if you use `generateRandomUser(...)`) or the same list of users (if you use `generateRandomUsers(...)`)
- For all parameters that you did not set using one of those setters, random values are generated. That means that if you specify a gender using `spec.setGenders(Arrays.asList(Gender.female))` but do not specify any nationalities, the generated users will all be female with a random nationality.
+   
+For all parameters that you did not set using one of those setters, random values are generated. That means that if you specify a gender using `spec.setGenders(Arrays.asList(Gender.female))` but do not specify any nationalities, the generated users will all be female with a random nationality.
 
 # How passwords are generated
 By default, the login passwords created for the users consist of two words and a random number from 100 to 999. However, you may wish to control how passwords are generated. In that case, just create a `PasswordSpec`-object like this:
