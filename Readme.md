@@ -1,4 +1,4 @@
-# randomusers
+# randomusers [![Build Status](https://travis-ci.org/vatbub/randomusers.svg?branch=master)](https://travis-ci.org/vatbub/randomusers)
 This library generates random user data (just like Lorem ipsum but with people). The idea (and data) originates from [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) and I decided to do a complete Java implementation of it. It currently supports all the features of [randomuser.me](https://randomuser.me/) (including all the secret ones too ;) ).
  
  # Download
