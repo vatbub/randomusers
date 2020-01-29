@@ -10,7 +10,7 @@ install:
   - tar -xf jdk-8u191-linux-x64.tar.gz
   - export JAVA_HOME=/home/travis/build/vatbub/randomusers/jdk1.8.0_191/
 script:
-  - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify -DtrimStackTrace=false --settings travisMavenSettings.xml
+  - mvn verify -DtrimStackTrace=false --settings travisMavenSettings.xml
 after_success:
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ]; then mvn deploy --settings travisMavenSettings.xml; fi
 notifications:
