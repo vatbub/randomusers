@@ -21,7 +21,7 @@
     <parent>
         <groupId>com.github.vatbub</groupId>
         <artifactId>parentPom</artifactId>
-        <version>0.0.23-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -58,6 +58,10 @@
             <groupId>com.github.vatbub</groupId>
             <artifactId>randomusers</artifactId>
             <version>1.4-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
 </project>
