@@ -28,7 +28,7 @@
     </repositories>
 
     <artifactId>randomusers</artifactId>
-    <version>1.4</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -46,7 +46,7 @@
         <connection>scm:git:git@github.com:vatbub/${gitRepoName}.git</connection>
         <url>https://github.com/vatbub/${gitRepoName}</url>
         <developerConnection>scm:git:git@github.com:vatbub/${gitRepoName}.git</developerConnection>
-        <tag>randomusers-1.4</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
